@@ -1,0 +1,50 @@
+version: '2'
+services:
+  rabbit:
+     image: rabbitmq
+     ports:
+       - "5672:5672"
+       - "15672:15672"
+     env_file:
+       - rabbit.env
+  pure-ftpd:
+     image: stilliard/pure-ftpd
+     ports:
+       - "21:21"
+     volumes:
+       - ./pure-ftp:/etc/pure-ftpd
+  perkin:
+     restart: always
+     build: ./perkin
+     links:
+       - rabbit:rabbit
+     ports:
+       - "8080:8080"
+     depends_on:
+       - rabbit
+     env_file:
+       - rabbit.env
+       - ftp.env
+  posie:
+     build: ./posie
+     links:
+       - rabbit:rabbit
+     ports:
+       - "5000:5000"
+  sde:
+     restart: always
+     build:
+        context: ./sde
+        dockerfile: Dockerfile.local
+     links:
+       - posie:posie
+       - rabbit:rabbit
+       - pure-ftpd:pure-ftpd
+     ports:
+       - "80:5000"
+     volumes:
+       - ./sde:/app
+     env_file:
+       - rabbit.env
+       - ftp.env
+     entrypoint: python3 server.py
