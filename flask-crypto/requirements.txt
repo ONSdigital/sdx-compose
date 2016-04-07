@@ -11,3 +11,4 @@ pyasn1==0.1.9
 pycparser==2.14
 requests==2.9.1
 six==1.10.0
+PyJWT==1.4.0
