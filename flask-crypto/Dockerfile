@@ -7,7 +7,7 @@ RUN apk update && apk upgrade \
   && curl -sS https://bootstrap.pypa.io/get-pip.py | python3
 
 RUN apk add --no-cache --virtual=build-dependencies ca-certificates libffi-dev openssl-dev g++ make python3-dev \
-  && pip3 install -r /crypto/requirements.txt \
+  && pip3 install -U -I -r /crypto/requirements.txt \
   && apk del build-dependencies \
   && rm -rf /var/cache/apk/* \
   && rm -rf /root/.cache/pip/* \
