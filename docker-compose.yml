@@ -22,28 +22,34 @@ services:
        - "8080:8080"
      depends_on:
        - rabbit
+     environment:
+       - RECEIPT_HOST=skip
      env_file:
        - rabbit.env
        - ftp.env
   posie:
      build: ./posie
+     volumes:
+       - ./posie:/app
+       - ./jwt-test-keys:/keys
      links:
        - rabbit:rabbit
      ports:
        - "5000:5000"
   sde:
      restart: always
-     build:
-        context: ./sde
-        dockerfile: Dockerfile.local
+     build: ./sde-console
      links:
        - posie:posie
        - rabbit:rabbit
        - pure-ftpd:pure-ftpd
+     depends_on:
+       - rabbit
      ports:
        - "80:5000"
      volumes:
        - ./sde:/app
+       - ./jwt-test-keys:/keys
      env_file:
        - rabbit.env
        - ftp.env
