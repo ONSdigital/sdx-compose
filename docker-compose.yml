@@ -48,7 +48,7 @@ services:
      ports:
        - "80:5000"
      volumes:
-       - ./sde:/app
+       - ./sde-console:/app
        - ./jwt-test-keys:/keys
      env_file:
        - rabbit.env
