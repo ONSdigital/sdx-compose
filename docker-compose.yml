@@ -11,8 +11,12 @@ services:
      image: stilliard/pure-ftpd
      ports:
        - "21:21"
+       - "30000-30009:30000-30009"
      volumes:
        - ./pure-ftp:/etc/pure-ftpd
+       - ./pure-ftp-structure:/home/ftpusers/ons
+     environment:
+       - PUBLICHOST=pure-ftpd
   perkin:
      restart: always
      build: ./perkin
@@ -36,8 +40,7 @@ services:
        - rabbit:rabbit
      ports:
        - "5000:5000"
-  sde:
-     restart: always
+  console:
      build: ./sde-console
      links:
        - posie:posie
