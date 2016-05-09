@@ -20,6 +20,8 @@ services:
   perkin:
      restart: always
      build: ./perkin
+     volumes:
+       - ./perkin/logs:/logs
      links:
        - rabbit:rabbit
      ports:
