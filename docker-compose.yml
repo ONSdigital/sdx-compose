@@ -21,7 +21,7 @@ services:
      restart: always
      build: ./perkin
      volumes:
-       - ./perkin/logs:/logs
+       - ./perkin/logs:/usr/src/logs
      links:
        - rabbit:rabbit
      ports:
