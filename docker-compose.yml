@@ -34,7 +34,7 @@ services:
      networks:
       - sdx-env
   posie:
-     build: ./posie
+     build: ./sdx-decrypt
      volumes:
        - ./posie:/app
        - ./jwt-test-keys:/keys
