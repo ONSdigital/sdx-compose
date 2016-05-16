@@ -1,31 +1,29 @@
 version: '2'
 services:
   rabbit:
-     image: rabbitmq
-     ports:
-       - "5672:5672"
-       - "15672:15672"
+     image: rabbitmq:3-management
      env_file:
        - rabbit.env
+     networks:
+      - sdx-env
+     ports:
+      - "15672:15672"
   pure-ftpd:
      image: stilliard/pure-ftpd
-     ports:
-       - "21:21"
-       - "30000-30009:30000-30009"
      volumes:
        - ./pure-ftp:/etc/pure-ftpd
        - ./pure-ftp-structure:/home/ftpusers/ons
      environment:
        - PUBLICHOST=pure-ftpd
+     networks:
+      - sdx-env
   perkin:
      restart: always
      build: ./perkin
-     volumes:
-       - ./perkin/logs:/usr/src/logs
-     links:
-       - rabbit:rabbit
      ports:
        - "8080:8080"
+     volumes:
+       - ./perkin/logs:/usr/src/logs
      depends_on:
        - rabbit
      environment:
@@ -33,43 +31,42 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
+     networks:
+      - sdx-env
   posie:
      build: ./posie
      volumes:
        - ./posie:/app
        - ./jwt-test-keys:/keys
-     links:
-       - rabbit:rabbit
-     ports:
-       - "5000:5000"
+     networks:
+      - sdx-env
   bdd:
-    build: ./sde-bdd
-    ports:
-      - "5050:5000"
-    links:
-      - posie:posie
-      - rabbit:rabbit
-      - pure-ftpd:pure-ftpd
-    volumes:
-      - ./sde-bdd:/app
-      - ./jwt-test-keys:/keys
-    env_file:
-      - rabbit.env
-      - ftp.env
+     build: ./sdx-bdd
+     ports:
+       - "81:5000"
+     volumes:
+        - ./sdx-bdd:/app
+        - ./jwt-test-keys:/keys
+     networks:
+       - sdx-env
+     env_file:
+       - rabbit.env
+       - ftp.env
   console:
-     build: ./sde-console
-     links:
-       - posie:posie
-       - rabbit:rabbit
-       - pure-ftpd:pure-ftpd
+     build: ./sdx-console
      depends_on:
        - rabbit
      ports:
        - "80:5000"
      volumes:
-       - ./sde-console:/app
+       - ./sdx-console:/app
        - ./jwt-test-keys:/keys
      env_file:
        - rabbit.env
        - ftp.env
      entrypoint: python3 server.py
+     networks:
+      - sdx-env
+networks:
+  sdx-env:
+    driver: bridge
