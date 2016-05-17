@@ -6,8 +6,6 @@ services:
        - rabbit.env
      networks:
       - sdx-env
-     ports:
-      - "15672:15672"
   pure-ftpd:
      image: stilliard/pure-ftpd
      volumes:
@@ -20,8 +18,6 @@ services:
   perkin:
      restart: always
      build: ./perkin
-     ports:
-       - "8080:8080"
      volumes:
        - ./perkin/logs:/usr/src/logs
      depends_on:
