@@ -29,13 +29,15 @@ services:
        - ftp.env
      networks:
       - sdx-env
-  posie:
+  sdx-decrypt:
      build: ./sdx-decrypt
      volumes:
        - ./sdx-decrypt:/app
        - ./jwt-test-keys:/keys
      networks:
-      - sdx-env
+      sdx-env:
+        aliases:
+          - posie
   bdd:
      build: ./sdx-bdd
      ports:
