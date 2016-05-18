@@ -32,6 +32,7 @@ services:
   sdx-decrypt:
      build: ./sdx-decrypt
      volumes:
+       - ./sdx-decrypt/logs:/app/logs
        - ./sdx-decrypt:/app
        - ./jwt-test-keys:/keys
      networks:
