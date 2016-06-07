@@ -1,7 +1,9 @@
 #!/bin/bash
 git submodule foreach git pull origin master
 home=$PWD
-cd perkin
+cd sdx-collect
+mvn clean package
+cd sdx-store
 mvn clean package
 cd $home
 eval $(docker-machine env)

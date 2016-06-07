@@ -1,9 +1,9 @@
 [submodule "sdx-decrypt"]
 	path = sdx-decrypt
 	url = https://github.com/ONSdigital/sdx-decrypt.git
-[submodule "perkin"]
-	path = perkin
-	url = https://github.com/ONSdigital/perkin.git
+[submodule "sdx-collect"]
+	path = sdx-collect
+	url = https://github.com/ONSdigital/sdx-collect.git
 [submodule "sdx-bdd"]
 	path = sdx-bdd
 	url = https://github.com/ONSdigital/sdx-bdd.git
