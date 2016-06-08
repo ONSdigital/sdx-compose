@@ -74,8 +74,6 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
-     environment:
-       - EQ_PRIVATE_KEY_PASSWORD=test
      entrypoint: python3 server.py
      networks:
       - sdx-env
