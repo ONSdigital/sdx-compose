@@ -18,6 +18,8 @@ services:
   perkin:
      restart: always
      build: ./perkin
+     ports:
+       - "8080:8080"
      volumes:
        - ./perkin/logs:/usr/src/logs
      depends_on:
@@ -39,6 +41,15 @@ services:
       sdx-env:
         aliases:
           - posie
+  sdx-validate:
+     build: ./sdx-validate
+     ports:
+      - "82:5000"
+     volumes:
+       - ./sdx-validate/logs:/app/logs
+       - ./sdx-validate:/app
+     networks:
+       - sdx-env
   bdd:
      build: ./sdx-bdd
      ports:
@@ -63,6 +74,8 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
+     environment:
+       - EQ_PRIVATE_KEY_PASSWORD=test
      entrypoint: python3 server.py
      networks:
       - sdx-env
