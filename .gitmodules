@@ -13,3 +13,6 @@
 [submodule "sdx-store"]
 	path = sdx-store
 	url = https://github.com/ONSdigital/sdx-store.git
+[submodule "sdx-validate"]
+        path = sdx-validate
+        url = https://github.com/ONSdigital/sdx-validate.git
