@@ -15,13 +15,13 @@ services:
        - PUBLICHOST=pure-ftpd
      networks:
       - sdx-env
-  perkin:
+  sdx-collect:
      restart: always
-     build: ./perkin
+     build: ./sdx-collect
      ports:
        - "8080:8080"
      volumes:
-       - ./perkin/logs:/usr/src/logs
+       - ./sdx-collect/logs:/usr/src/logs
      depends_on:
        - rabbit
      environment:
