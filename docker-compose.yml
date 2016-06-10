@@ -50,6 +50,36 @@ services:
        - ./sdx-validate:/app
      networks:
        - sdx-env
+  sdx-store:
+    build: ./sdx-store
+    ports:
+     - "8081:8080"
+    volumes:
+      - ./sdx-store/logs:/usr/src/logs
+      - ./sdx-store/sdx-store:/usr/src/sdx-store
+    networks:
+      - sdx-env
+  sdx-transform-cs:
+     build: ./sdx-transform-cs
+     ports:
+      - "83:5000"
+     volumes:
+       - ./sdx-transform-cs/logs:/app/logs
+       - ./sdx-transform-cs:/app
+     networks:
+       - sdx-env
+  sdx-downstream:
+     build: ./sdx-downstream
+     ports:
+      - "84:5001"
+     volumes:
+       - ./sdx-downstream/logs:/app/logs
+       - ./sdx-downstream:/app
+     environment:
+       - SDX_STORE_URL=http://sdx-store:8080
+       - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
+     networks:
+       - sdx-env
   bdd:
      build: ./sdx-bdd
      ports:
