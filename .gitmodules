@@ -16,9 +16,6 @@
 [submodule "sdx-validate"]
 	path = sdx-validate
 	url = https://github.com/ONSdigital/sdx-validate.git
-[submodule "sdx-images"]
-	path = sdx-images
-	url = https://github.com/iwootten/sdx-images.git
 [submodule "sdx-downstream"]
 	path = sdx-downstream
 	url = https://github.com/ONSdigital/sdx-downstream.git
