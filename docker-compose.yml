@@ -15,6 +15,12 @@ services:
        - PUBLICHOST=pure-ftpd
      networks:
       - sdx-env
+  mongodb:
+     image: mongo:3
+     networks:
+      - sdx-env
+     ports:
+      - "27017:27017"
   sdx-collect:
      restart: always
      build: ./sdx-collect
@@ -53,10 +59,11 @@ services:
   sdx-store:
     build: ./sdx-store
     ports:
-     - "8081:8080"
+     - "85:5000"
     volumes:
       - ./sdx-store/logs:/usr/src/logs
-      - ./sdx-store/sdx-store:/usr/src/sdx-store
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
     networks:
       - sdx-env
   sdx-transform-cs:
@@ -76,8 +83,10 @@ services:
        - ./sdx-downstream/logs:/app/logs
        - ./sdx-downstream:/app
      environment:
-       - SDX_STORE_URL=http://sdx-store:8080
+       - SDX_STORE_URL=http://sdx-store:5000
        - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
+     env_file:
+       - ftp.env
      networks:
        - sdx-env
   bdd:
