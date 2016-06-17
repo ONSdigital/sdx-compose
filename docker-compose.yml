@@ -4,6 +4,9 @@ services:
      image: rabbitmq:3-management
      env_file:
        - rabbit.env
+     ports:
+      - "5672:5672"
+      - "15672:15672"
      networks:
       - sdx-env
   pure-ftpd:
@@ -62,6 +65,7 @@ services:
      - "85:5000"
     volumes:
       - ./sdx-store/logs:/usr/src/logs
+      - ./sdx-store:/app
     environment:
       - MONGODB_URL=mongodb://mongodb:27017
     networks:
@@ -86,6 +90,7 @@ services:
        - SDX_STORE_URL=http://sdx-store:5000
        - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
      env_file:
+       - rabbit.env
        - ftp.env
      networks:
        - sdx-env
