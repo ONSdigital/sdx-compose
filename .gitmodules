@@ -13,3 +13,12 @@
 [submodule "sdx-store"]
 	path = sdx-store
 	url = https://github.com/ONSdigital/sdx-store.git
+[submodule "sdx-validate"]
+	path = sdx-validate
+	url = https://github.com/ONSdigital/sdx-validate.git
+[submodule "sdx-downstream"]
+	path = sdx-downstream
+	url = https://github.com/ONSdigital/sdx-downstream.git
+[submodule "sdx-transform-cs"]
+	path = sdx-transform-cs
+	url = https://github.com/ONSdigital/sdx-transform-cs.git
