@@ -22,3 +22,6 @@
 [submodule "sdx-transform-cs"]
 	path = sdx-transform-cs
 	url = https://github.com/ONSdigital/sdx-transform-cs.git
+[submodule "sdx-sequence"]
+	path = sdx-sequence
+	url = git@github.com:ONSdigital/sdx-sequence.git
