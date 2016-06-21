@@ -94,6 +94,17 @@ services:
        - ftp.env
      networks:
        - sdx-env
+  sdx-sequence:
+    build: ./sdx-sequence
+    ports:
+     - "86:5000"
+    volumes:
+      - ./sdx-sequence/logs:/usr/src/logs
+      - ./sdx-sequence:/app
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+    networks:
+      - sdx-env
   bdd:
      build: ./sdx-bdd
      ports:
