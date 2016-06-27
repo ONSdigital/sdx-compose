@@ -1,27 +1,27 @@
 [submodule "sdx-decrypt"]
 	path = sdx-decrypt
-	url = https://github.com/ONSdigital/sdx-decrypt.git
+	url = git@github.com:ONSdigital/sdx-decrypt.git
 [submodule "sdx-collect"]
 	path = sdx-collect
-	url = https://github.com/ONSdigital/sdx-collect.git
+	url = git@github.com:ONSdigital/sdx-collect.git
 [submodule "sdx-bdd"]
 	path = sdx-bdd
-	url = https://github.com/ONSdigital/sdx-bdd.git
+	url = git@github.com:ONSdigital/sdx-bdd.git
 [submodule "sdx-console"]
 	path = sdx-console
-	url = https://github.com/ONSdigital/sdx-console.git
+	url = git@github.com:ONSdigital/sdx-console.git
 [submodule "sdx-store"]
 	path = sdx-store
-	url = https://github.com/ONSdigital/sdx-store.git
+	url = git@github.com:ONSdigital/sdx-store.git
 [submodule "sdx-validate"]
 	path = sdx-validate
-	url = https://github.com/ONSdigital/sdx-validate.git
+	url = git@github.com:ONSdigital/sdx-validate.git
 [submodule "sdx-downstream"]
 	path = sdx-downstream
-	url = https://github.com/ONSdigital/sdx-downstream.git
+	url = git@github.com:ONSdigital/sdx-downstream.git
 [submodule "sdx-transform-cs"]
 	path = sdx-transform-cs
-	url = https://github.com/ONSdigital/sdx-transform-cs.git
+	url = git@github.com:ONSdigital/sdx-transform-cs.git
 [submodule "sdx-sequence"]
 	path = sdx-sequence
 	url = git@github.com:ONSdigital/sdx-sequence.git
