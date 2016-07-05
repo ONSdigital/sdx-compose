@@ -25,3 +25,6 @@
 [submodule "sdx-sequence"]
 	path = sdx-sequence
 	url = git@github.com:ONSdigital/sdx-sequence.git
+[submodule "sdx-transform-testform"]
+	path = sdx-transform-testform
+	url = git@github.com:ONSdigital/sdx-transform-testform.git
