@@ -79,6 +79,15 @@ services:
        - ./sdx-transform-cs:/app
      networks:
        - sdx-env
+  sdx-transform-testform:
+     build: ./sdx-transform-testform
+     ports:
+      - "87:5000"
+     volumes:
+       - ./sdx-transform-testform/logs:/app/logs
+       - ./sdx-transform-testform:/app
+     networks:
+       - sdx-env
   sdx-downstream:
      build: ./sdx-downstream
      ports:
