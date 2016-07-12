@@ -38,6 +38,7 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
+       - common.env
      networks:
       - sdx-env
   sdx-decrypt:
@@ -46,6 +47,8 @@ services:
        - ./sdx-decrypt/logs:/app/logs
        - ./sdx-decrypt:/app
        - ./jwt-test-keys:/keys
+     env_file:
+       - common.env
      networks:
       sdx-env:
         aliases:
@@ -59,6 +62,8 @@ services:
        - ./sdx-validate:/app
      networks:
        - sdx-env
+     env_file:
+       - common.env
   sdx-store:
     build: ./sdx-store
     ports:
@@ -68,6 +73,8 @@ services:
       - ./sdx-store:/app
     environment:
       - MONGODB_URL=mongodb://mongodb:27017
+    env_file:
+      - common.env
     networks:
       - sdx-env
   sdx-transform-cs:
@@ -77,12 +84,16 @@ services:
      volumes:
        - ./sdx-transform-cs/logs:/app/logs
        - ./sdx-transform-cs:/app
+     env_file:
+       - common.env
      networks:
        - sdx-env
   sdx-transform-testform:
      build: ./sdx-transform-testform
      ports:
       - "87:5000"
+     env_file:
+       - common.env
      volumes:
        - ./sdx-transform-testform/logs:/app/logs
        - ./sdx-transform-testform:/app
@@ -101,12 +112,15 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
+       - common.env
      networks:
        - sdx-env
   sdx-sequence:
     build: ./sdx-sequence
     ports:
      - "86:5000"
+    env_file:
+     - common.env
     volumes:
       - ./sdx-sequence/logs:/usr/src/logs
       - ./sdx-sequence:/app
@@ -126,6 +140,7 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
+       - common.env
   console:
      build: ./sdx-console
      depends_on:
@@ -138,6 +153,7 @@ services:
      env_file:
        - rabbit.env
        - ftp.env
+       - common.env
      entrypoint: python3 server.py
      networks:
       - sdx-env
