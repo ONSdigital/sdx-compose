@@ -28,3 +28,6 @@
 [submodule "sdx-transform-testform"]
 	path = sdx-transform-testform
 	url = git@github.com:ONSdigital/sdx-transform-testform.git
+[submodule "sdx-mock-receipt"]
+	path = sdx-mock-receipt
+	url = git@github.com:ONSdigital/sdx-mock-receipt.git
