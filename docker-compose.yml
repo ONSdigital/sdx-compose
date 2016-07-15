@@ -53,7 +53,7 @@ services:
   sdx-validate:
      build: ./sdx-validate
      ports:
-      - "82:5000"
+      - "8082:5000"
      volumes:
        - ./sdx-validate/logs:/app/logs
        - ./sdx-validate:/app
@@ -62,7 +62,7 @@ services:
   sdx-store:
     build: ./sdx-store
     ports:
-     - "85:5000"
+     - "8085:5000"
     volumes:
       - ./sdx-store/logs:/usr/src/logs
       - ./sdx-store:/app
@@ -73,7 +73,7 @@ services:
   sdx-transform-cs:
      build: ./sdx-transform-cs
      ports:
-      - "83:5000"
+      - "8083:5000"
      volumes:
        - ./sdx-transform-cs/logs:/app/logs
        - ./sdx-transform-cs:/app
@@ -82,7 +82,7 @@ services:
   sdx-transform-testform:
      build: ./sdx-transform-testform
      ports:
-      - "87:5000"
+      - "8087:5000"
      volumes:
        - ./sdx-transform-testform/logs:/app/logs
        - ./sdx-transform-testform:/app
@@ -90,8 +90,6 @@ services:
        - sdx-env
   sdx-downstream:
      build: ./sdx-downstream
-     ports:
-      - "84:5001"
      volumes:
        - ./sdx-downstream/logs:/app/logs
        - ./sdx-downstream:/app
@@ -106,7 +104,7 @@ services:
   sdx-sequence:
     build: ./sdx-sequence
     ports:
-     - "86:5000"
+     - "8086:5000"
     volumes:
       - ./sdx-sequence/logs:/usr/src/logs
       - ./sdx-sequence:/app
@@ -117,7 +115,7 @@ services:
   bdd:
      build: ./sdx-bdd
      ports:
-       - "81:5000"
+       - "8081:5000"
      volumes:
         - ./sdx-bdd:/app
         - ./jwt-test-keys:/keys
