@@ -105,7 +105,7 @@ services:
       - "84:5001"
      volumes:
        - ./sdx-downstream/logs:/app/logs
-       - ./sdx-downstream:/app
+       - ./sdx-downstream/app:/app
      environment:
        - SDX_STORE_URL=http://sdx-store:5000
        - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
