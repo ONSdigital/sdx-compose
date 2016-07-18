@@ -142,7 +142,7 @@ services:
   sdx-mock-receipt:
       build: ./sdx-mock-receipt
       ports:
-        - "88:5000"
+        - "8088:5000"
       env_file:
         - common.env
       networks:
