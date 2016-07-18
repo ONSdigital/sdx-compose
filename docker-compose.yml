@@ -34,7 +34,7 @@ services:
      depends_on:
        - rabbit
      environment:
-       - RECEIPT_HOST=skip
+       - RECEIPT_HOST=http://sdx-mock-receipt:5000
      env_file:
        - rabbit.env
        - ftp.env
@@ -139,6 +139,14 @@ services:
        - rabbit.env
        - ftp.env
        - common.env
+  sdx-mock-receipt:
+      build: ./sdx-mock-receipt
+      ports:
+        - "8088:5000"
+      env_file:
+        - common.env
+      networks:
+        - sdx-env
   console:
      build: ./sdx-console
      depends_on:
