@@ -161,7 +161,6 @@ services:
        - rabbit.env
        - ftp.env
        - common.env
-     entrypoint: python3 server.py
      networks:
       - sdx-env
 networks:
