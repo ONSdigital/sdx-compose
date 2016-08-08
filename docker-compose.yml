@@ -1,72 +1,96 @@
 version: '2'
 services:
   rabbit:
-     image: rabbitmq:3-management
-     env_file:
-       - rabbit.env
-     ports:
+    image: rabbitmq:3-management
+    env_file:
+      - rabbit.env
+    ports:
       - "5672:5672"
       - "15672:15672"
-     networks:
+    networks:
       - sdx-env
   pure-ftpd:
-     image: stilliard/pure-ftpd
-     volumes:
-       - ./pure-ftp:/etc/pure-ftpd
-       - ./pure-ftp-structure:/home/ftpusers/ons
-     environment:
-       - PUBLICHOST=pure-ftpd
-     networks:
+    image: stilliard/pure-ftpd
+    volumes:
+      - ./pure-ftp:/etc/pure-ftpd
+      - ./pure-ftp-structure:/home/ftpusers/ons
+    environment:
+      - PUBLICHOST=pure-ftpd
+    networks:
       - sdx-env
   mongodb:
-     image: mongo:3
-     networks:
+    image: mongo:3
+    networks:
       - sdx-env
-     ports:
+    ports:
       - "27017:27017"
-  sdx-collect:
-     restart: always
-     build: ./sdx-collect
-     volumes:
-       - ./sdx-collect/logs:/usr/src/logs
-     depends_on:
-       - rabbit
-     environment:
-       - RECEIPT_HOST=http://sdx-mock-receipt:5000
-     env_file:
-       - rabbit.env
-       - ftp.env
-       - common.env
-       - receipt.env
-     networks:
+  rsyslog:
+    image: voxxit/rsyslog
+    volumes:
+      - ./logs:/var/log
+    ports:
+      - 5514:514/udp
+    restart: always
+    networks:
       - sdx-env
+  sdx-collect:
+    restart: always
+    build: ./sdx-collect
+    volumes:
+      - ./sdx-collect/logs:/usr/src/logs
+    depends_on:
+      - rabbit
+    environment:
+      - RECEIPT_HOST=http://sdx-mock-receipt:5000
+    env_file:
+      - rabbit.env
+      - ftp.env
+      - common.env
+      - receipt.env
+    networks:
+      - sdx-env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-collect"
   sdx-decrypt:
-     build: ./sdx-decrypt
-     volumes:
-       - ./sdx-decrypt/logs:/app/logs
-       - ./sdx-decrypt:/app
-       - ./jwt-test-keys:/keys
-     env_file:
-       - common.env
-     networks:
+    build: ./sdx-decrypt
+    volumes:
+      - ./sdx-decrypt/logs:/app/logs
+      - ./sdx-decrypt:/app
+      - ./jwt-test-keys:/keys
+    env_file:
+      - common.env
+    networks:
       sdx-env:
         aliases:
-          - posie
+           - posie
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-decrypt"
   sdx-validate:
-     build: ./sdx-validate
-     ports:
-      - "8082:5000"
-     volumes:
-       - ./sdx-validate/logs:/app/logs
-       - ./sdx-validate:/app
-     networks:
-       - sdx-env
-     env_file:
-       - common.env
+    build: ./sdx-validate
+    ports:
+     - "8082:5000"
+    volumes:
+     - ./sdx-validate/logs:/app/logs
+     - ./sdx-validate:/app
+    networks:
+     - sdx-env
+    env_file:
+     - common.env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-validate"
   sdx-store:
     build: ./sdx-store
     ports:
-     - "8085:5000"
+      - "8085:5000"
     volumes:
       - ./sdx-store/logs:/usr/src/logs
       - ./sdx-store:/app
@@ -76,47 +100,67 @@ services:
       - common.env
     networks:
       - sdx-env
+    logging:
+        driver: syslog
+        options:
+          syslog-address: "udp://127.0.0.1:5514"
+          tag: "sdx-store"
   sdx-transform-cs:
-     build: ./sdx-transform-cs
-     ports:
+    build: ./sdx-transform-cs
+    ports:
       - "8083:5000"
-     volumes:
-       - ./sdx-transform-cs/logs:/app/logs
-       - ./sdx-transform-cs:/app
-     env_file:
-       - common.env
-     networks:
-       - sdx-env
+    volumes:
+      - ./sdx-transform-cs/logs:/app/logs
+      - ./sdx-transform-cs:/app
+    env_file:
+      - common.env
+    networks:
+      - sdx-env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-transform-cs"
   sdx-transform-testform:
-     build: ./sdx-transform-testform
-     ports:
+    build: ./sdx-transform-testform
+    ports:
       - "8087:5000"
-     env_file:
-       - common.env
-     volumes:
-       - ./sdx-transform-testform/logs:/app/logs
-       - ./sdx-transform-testform:/app
-     networks:
-       - sdx-env
+    env_file:
+      - common.env
+    volumes:
+      - ./sdx-transform-testform/logs:/app/logs
+      - ./sdx-transform-testform:/app
+    networks:
+      - sdx-env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-transform-testform"
   sdx-downstream:
-     build: ./sdx-downstream
-     volumes:
-       - ./sdx-downstream/app:/app
-     environment:
-       - SDX_STORE_URL=http://sdx-store:5000
-       - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
-     env_file:
-       - rabbit.env
-       - ftp.env
-       - common.env
-     networks:
-       - sdx-env
+    build: ./sdx-downstream
+    volumes:
+      - ./sdx-downstream/app:/app
+    environment:
+      - SDX_STORE_URL=http://sdx-store:5000
+      - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
+    env_file:
+      - rabbit.env
+      - ftp.env
+      - common.env
+    networks:
+      - sdx-env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-downstream"
   sdx-sequence:
     build: ./sdx-sequence
     ports:
-     - "8086:5000"
+      - "8086:5000"
     env_file:
-     - common.env
+      - common.env
     volumes:
       - ./sdx-sequence/logs:/usr/src/logs
       - ./sdx-sequence:/app
@@ -124,45 +168,65 @@ services:
       - MONGODB_URL=mongodb://mongodb:27017
     networks:
       - sdx-env
+    logging:
+        driver: syslog
+        options:
+          syslog-address: "udp://127.0.0.1:5514"
+          tag: "sdx-sequence"
   bdd:
-     build: ./sdx-bdd
-     ports:
-       - "8081:5000"
-     volumes:
-        - ./sdx-bdd:/app
-        - ./jwt-test-keys:/keys
-     networks:
-       - sdx-env
-     env_file:
-       - rabbit.env
-       - ftp.env
-       - common.env
-  sdx-mock-receipt:
-      build: ./sdx-mock-receipt
-      ports:
-        - "8088:5000"
-      volumes:
-        - ./sdx-mock-receipt:/app
-      env_file:
-        - common.env
-        - receipt.env
-      networks:
-        - sdx-env
-  console:
-     build: ./sdx-console
-     depends_on:
-       - rabbit
-     ports:
-       - "80:5000"
-     volumes:
-       - ./sdx-console:/app
-       - ./jwt-test-keys:/keys
-     env_file:
-       - rabbit.env
-       - ftp.env
-       - common.env
-     networks:
+    build: ./sdx-bdd
+    ports:
+      - "8081:5000"
+    volumes:
+      - ./sdx-bdd:/app
+      - ./jwt-test-keys:/keys
+    networks:
       - sdx-env
+    env_file:
+      - rabbit.env
+      - ftp.env
+      - common.env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-bdd"
+  sdx-mock-receipt:
+    build: ./sdx-mock-receipt
+    ports:
+      - "8088:5000"
+    volumes:
+      - ./sdx-mock-receipt:/app
+    env_file:
+      - common.env
+      - receipt.env
+    networks:
+      - sdx-env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-mock-receipt"
+  console:
+    build: ./sdx-console
+    depends_on:
+      - rabbit
+    ports:
+      - "80:5000"
+    volumes:
+      - ./sdx-console:/app
+      - ./jwt-test-keys:/keys
+    env_file:
+      - rabbit.env
+      - ftp.env
+      - common.env
+    networks:
+      - sdx-env
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "udp://127.0.0.1:5514"
+        tag: "sdx-console"
 networks:
   sdx-env:
     driver: bridge
