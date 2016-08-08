@@ -36,8 +36,6 @@ services:
   sdx-collect:
     restart: always
     build: ./sdx-collect
-    volumes:
-      - ./sdx-collect/logs:/usr/src/logs
     depends_on:
       - rabbit
     environment:
@@ -57,7 +55,6 @@ services:
   sdx-decrypt:
     build: ./sdx-decrypt
     volumes:
-      - ./sdx-decrypt/logs:/app/logs
       - ./sdx-decrypt:/app
       - ./jwt-test-keys:/keys
     env_file:
@@ -76,7 +73,6 @@ services:
     ports:
      - "8082:5000"
     volumes:
-     - ./sdx-validate/logs:/app/logs
      - ./sdx-validate:/app
     networks:
      - sdx-env
@@ -92,7 +88,6 @@ services:
     ports:
       - "8085:5000"
     volumes:
-      - ./sdx-store/logs:/usr/src/logs
       - ./sdx-store:/app
     environment:
       - MONGODB_URL=mongodb://mongodb:27017
@@ -110,7 +105,6 @@ services:
     ports:
       - "8083:5000"
     volumes:
-      - ./sdx-transform-cs/logs:/app/logs
       - ./sdx-transform-cs:/app
     env_file:
       - common.env
@@ -128,7 +122,6 @@ services:
     env_file:
       - common.env
     volumes:
-      - ./sdx-transform-testform/logs:/app/logs
       - ./sdx-transform-testform:/app
     networks:
       - sdx-env
@@ -162,7 +155,6 @@ services:
     env_file:
       - common.env
     volumes:
-      - ./sdx-sequence/logs:/usr/src/logs
       - ./sdx-sequence:/app
     environment:
       - MONGODB_URL=mongodb://mongodb:27017
