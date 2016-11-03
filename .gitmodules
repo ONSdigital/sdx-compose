@@ -1,6 +1,3 @@
-[submodule "sdx-console"]
-	path = sdx-console
-	url = git@github.com:ONSdigital/sdx-console.git
 [submodule "sdx-store"]
 	path = sdx-store
 	url = git@github.com:ONSdigital/sdx-store.git
