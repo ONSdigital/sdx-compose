@@ -1,0 +1,4 @@
+<e:error xmlns:e="http://ns.ons.gov.uk/namespaces/resources/error">
+ <e:error_id>34134b11-8c3a-4a53-88d3-963cf62b1157</e:error_id>
+ <e:message>Collection Exercise or Reporting Unit Not Found</e:message>
+</e:error>
