@@ -3,6 +3,4 @@ export GIT_MERGE_AUTOEDIT=no
 
 git reset --hard
 
-git subtree pull --prefix sdx-decrypt sdx-decrypt master --squash
-git subtree pull --prefix sdx-collect sdx-collect master --squash
-git subtree pull --prefix sdx-bdd sdx-bdd master --squash
+find . -depth 1 -type d -name "sdx-*" | while read line; do git subtree pull --prefix ${line##*/} ${line##*/} master --squash; done
