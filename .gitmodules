@@ -1,3 +1,0 @@
-[submodule "sdx-mock-receipt"]
-	path = sdx-mock-receipt
-	url = git@github.com:ONSdigital/sdx-mock-receipt.git
