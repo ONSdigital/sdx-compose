@@ -1,6 +1,3 @@
-[submodule "sdx-decrypt"]
-	path = sdx-decrypt
-	url = git@github.com:ONSdigital/sdx-decrypt.git
 [submodule "sdx-collect"]
 	path = sdx-collect
 	url = git@github.com:ONSdigital/sdx-collect.git
