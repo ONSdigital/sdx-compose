@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>BDD Reports</title>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+        <script src="static/js/jquery-1.12.1.min.js"></script>
+        <script src="static/js/app.js"></script>
+    </head>
+    <body>
+        <div class='container'>
+            <h2>SDE Report Generator</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <a id="run-tests" class="btn btn-default" href="/publish/transform.feature">Run Now</a>
+            <table class="table table-hover reports">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Created</th>
+                    <th>Scenarios</th>
+                    <th>Test Steps</th>
+                    <th>Successes</th>
+                    <th>Failures</th>
+                    <th>Duration</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for report in reports %}
+                    {% if report.failures == 0 %}
+                        <tr class='success' data-href='/reports/{{report.id}}'>
+                    {% else %}
+                        <tr class='danger' data-href='/reports/{{report.id}}'>
+                    {% endif %}
+                        <td><a href="reports/{{report.id}}">{{report.id}}</a></td>
+                        <td>{{report.created}}</td>
+                        <td>{{report.scenarios}}</td>
+                        <td>{{report.steps}}</td>
+                        <td>{{report.successes}}</td>
+                        <td>{{report.failures}}</td>
+                        <td>{{'%0.2f' % report.duration}} s</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

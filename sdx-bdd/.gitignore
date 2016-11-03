@@ -1,0 +1,6 @@
+__pycache__
+static/reports/*.json
+behave.json
+reports.db
+*.pyc
+*.DS_Store
