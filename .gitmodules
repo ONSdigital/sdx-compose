@@ -1,6 +1,3 @@
-[submodule "sdx-validate"]
-	path = sdx-validate
-	url = git@github.com:ONSdigital/sdx-validate.git
 [submodule "sdx-downstream"]
 	path = sdx-downstream
 	url = git@github.com:ONSdigital/sdx-downstream.git
