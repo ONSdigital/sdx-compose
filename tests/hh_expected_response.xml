@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UnitDataSet>
+    <UnitDataRecord>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>SurveyId</InstanceVariable>
+            <!-- survey_id -->
+            <Datum>0</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>LimeQuestionnaireId</InstanceVariable>
+            <!-- instrument_id -->
+            <Datum>hh2016</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>QuestionnaireId</InstanceVariable>
+            <!-- ru_ref -->
+            <Datum>1234678901</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>ResponseSubmitTime</InstanceVariable>
+            <!-- submitted_at -->
+            <Datum>2016-07-14 15:42:25+00:00</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- agegroup -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>Agegroup</InstanceVariable>
+            <Datum>1</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- help1 -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpLogIn</InstanceVariable>
+            <Datum>3</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- helpother -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpLogInOther</InstanceVariable>
+            <Datum>Warren helped me</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- howcomplete -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HowComplete</InstanceVariable>
+            <Datum>1</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- device -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>WhichDevice1</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>WhichDevice2</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>WhichDevice3</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>WhichDevice4</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>WhichDevice5</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- deviceother -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>WhichDeviceOther</InstanceVariable>
+            <Datum>Facebook</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- whypaper -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>ChoosePaper1</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>ChoosePaper2</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>ChoosePaper3</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>ChoosePaper4</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>ChoosePaper5</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- paperother -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>PaperOther</InstanceVariable>
+            <Datum>My computer is broken</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- help2 -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline1</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline2</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline3</InstanceVariable>
+            <Datum>True</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline4</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline5</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline6</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline7</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline8</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline9</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnline10</InstanceVariable>
+            <Datum>False</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- help2other -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>HelpOnlineOther</InstanceVariable>
+            <Datum>Smoke Signals</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- visit -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>VisitHelp</InstanceVariable>
+            <Datum>Y</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- find -->
+            <Type>Identifier</Type>
+            <Population>Person</Population>
+            <InstanceVariable>FindHelp</InstanceVariable>
+            <Datum>Y</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>Forced</InstanceVariable>
+            <Datum>true</Datum>
+        </UnitDataPoint>
+    </UnitDataRecord>
+</UnitDataSet>

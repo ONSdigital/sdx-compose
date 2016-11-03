@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UnitDataSet>
+    <UnitDataRecord>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>SurveyId</InstanceVariable>
+            <!-- survey_id -->
+            <Datum>0</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>LimeQuestionnaireId</InstanceVariable>
+            <!-- instrument_id -->
+            <Datum>ce2016</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>QuestionnaireId</InstanceVariable>
+            <!-- ru_ref -->
+            <Datum>1234570071</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>ResponseSubmitTime</InstanceVariable>
+            <!-- submitted_at -->
+            <Datum>2016-03-12 10:39:40+00:00</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 1 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>EstabType</InstanceVariable>
+            <Datum>2</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 2 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>GuestBeds</InstanceVariable>
+            <Datum>4</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 3 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>PeopleLiveHere</InstanceVariable>
+            <Datum>2</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 4 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>VisitHelp</InstanceVariable>
+            <Datum>Y</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>Forced</InstanceVariable>
+            <Datum>true</Datum>
+        </UnitDataPoint>
+    </UnitDataRecord>
+</UnitDataSet>
