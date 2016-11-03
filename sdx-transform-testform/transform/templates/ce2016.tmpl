@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UnitDataSet>
+    <UnitDataRecord>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>SurveyId</InstanceVariable>
+            <!-- survey_id -->
+            <Datum>{{response.survey_id}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>LimeQuestionnaireId</InstanceVariable>
+            <!-- instrument_id -->
+            <Datum>{{response.collection.instrument_id}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>QuestionnaireId</InstanceVariable>
+            <!-- ru_ref -->
+            <Datum>{{response.metadata.ru_ref[0:10]}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>ResponseSubmitTime</InstanceVariable>
+            <!-- submitted_at -->
+            <Datum>{{submitted}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 1 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>EstabType</InstanceVariable>
+            <Datum>{{response.data['1']}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 2 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>GuestBeds</InstanceVariable>
+            <Datum>{{response.data['2']}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 3 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>PeopleLiveHere</InstanceVariable>
+            <Datum>{{response.data['3']}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <!-- Question 4 -->
+            <Type>Identifier</Type>
+            <Population>Establishment</Population>
+            <InstanceVariable>VisitHelp</InstanceVariable>
+            <Datum>{{response.data['4']}}</Datum>
+        </UnitDataPoint>
+        <UnitDataPoint>
+            <Type>Identifier</Type>
+            <Population>Response</Population>
+            <InstanceVariable>Forced</InstanceVariable>
+            <Datum>true</Datum>
+        </UnitDataPoint>
+    </UnitDataRecord>
+</UnitDataSet>

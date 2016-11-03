@@ -1,0 +1,15 @@
+.DS_Store
+tests/__pycache__/
+__pycache__
+logs/
+*.pyc
+*.pdf
+*.zip
+*.jpg
+*.csv
+tmp/*
+.Python
+bin/
+include/
+lib/
+pip-selfcheck.json

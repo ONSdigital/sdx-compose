@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reports</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        {% for report in reports %}
+        <div class="report">
+            <h2>{{report.keyword}}: {{report.name}} <span class="tags">{{report.tags}}</span></h2>
+            <p class="filename">{{report.uri}}</p>
+            <p class='lead'>
+            {% for description in report.description %}
+                {{description}},
+            {% endfor %}
+            </p>
+            {% for element in report.elements %}
+                <h3>
+                    {{element.keyword}}: {{element.name}}
+                    {% for tag in element.tags %}
+                        <span class="scenario-tag">{{name}}</span>
+                    {% endfor %}
+                </h3>
+                <table class='table table-hover'>
+                    <tr>
+                        <th style="width: 100px;">Condition</th>
+                        <th>Step</th>
+                        <th style="width: 100px;">Status</th>
+                        <th style="width: 100px;">Line</th>
+                        <th>Duration</th>
+                    </tr>
+                {% for step in element.steps %}
+                    {% if step.result %}
+                        {% if step.result.status=='failed' %}
+                        <tr class="{{step.result.status}} danger {% if step.table %}datatable{% endif %}">
+                        {% elif step.result.status=='undefined' %}
+                        <tr class="{{step.result.status}} warning {% if step.table %}datatable{% endif %}">
+                        {% elif step.result.status=='skipped' %}
+                        <tr class="{{step.result.status}} info {% if step.table %}datatable{% endif %}">
+                        {% else %}
+                        <tr class="{{step.result.status}} success {% if step.table %}datatable{% endif %}">
+                        {% endif %}
+                            <td>{{step.keyword}}</td>
+                            <td>{{step.name}}</td>
+                            <td class="status">{{step.result.status}}</td>
+                            <td><a href='http://github.com/onsdigital/sde-bdd/blob/master/{{step.location | replace(":", "#L")}}'>{{step.location}}</a></td>
+                            <td>{{'%0.2f' % step.result.duration}} s</td>
+                        </tr>
+                        {% if step.table %}
+                        <tr class="hidden {{step.result.status}}">
+                            <td colspan="4">
+                                <table class="table table-bordered table-hover">
+                                    <tr>
+                                        {% for heading in step.table.headings %}
+                                        <th>{{heading}}</th>
+                                        {% endfor %}
+                                    </tr>
+                                    {% for row in step.table.rows %}
+                                    <tr>
+                                        {% for col_value in row %}
+                                        <td>{{col_value}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        <tr class="hidden {{step.result.status}}">
+                            <td colspan="4">
+                                <div class="alert alert-danger">
+                                {% for error in step.result.error_message %}
+                                    <p>{{error}}</p>
+                                {% endfor %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{step.line}}</td>
+                            <td>{{step.keyword}}</td>
+                            <td>{{step.name}}</td>
+                            <td class="status"></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </table>
+                {% for image in element.image %}{{image.imageName}}{% endfor %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+        (function () {
+            'use strict';
+
+            function getListener(elementList, i) {
+                return function () {
+                    if (elementList[i].nextElementSibling.classList.contains('hidden')) {
+                        elementList[i].nextElementSibling.classList.remove('hidden');
+                    } else {
+                        elementList[i].nextElementSibling.classList.add('hidden');
+                    }
+                }
+            }
+
+            var failed = document.getElementsByClassName('failed');
+            var datatable = document.getElementsByClassName('datatable');
+
+            for (var i = 0; i < failed.length; i += 1) {
+                failed[i].addEventListener('click', getListener(failed, i));
+            }
+
+            for (var i = 0; i < datatable.length; i += 1) {
+                datatable[i].addEventListener('click', getListener(datatable, i));
+            }
+        })(window);
+    </script>
+</body>
+</html>

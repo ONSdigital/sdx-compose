@@ -1,10 +1,6 @@
 #!/bin/bash
-git submodule foreach git pull origin master
-home=$PWD
-cd sdx-collect
-mvn clean package
-cd $home
-cd sdx-store
-mvn clean package
-cd $home
-eval $(docker-machine env)
+export GIT_MERGE_AUTOEDIT=no
+
+git reset --hard
+
+find . -depth 1 -type d -name "sdx-*" | while read line; do git subtree pull --prefix ${line##*/} ${line##*/} master --squash; done
