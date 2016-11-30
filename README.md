@@ -1,28 +1,62 @@
-# Dockers
+# sdx-compose
 
-This repository contains a collection of dockerfiles used throughout the Office of National Statistics (ONS) Survey Data Exchange (SDE) project. The root of the repo contains a docker-compose yaml which builds all elements of the SDE project, along with test tools.
+This repository allows you to spin up a local test environment for the ``sdx-`` suite of services.
 
-In order to build the docker-compose app, the following projects are configured as submodules: [Perkin](https://github.com/ONSdigital/perkin), [sdx-decrypt](https://github.com/ONSdigital/sdx-decrypt), [sde-bdd](https://github.com/ONSdigital/sde-bdd) and [sde-console](https://github.com/ONSdigital/sde-console). 
+### Prerequisites
 
- For development you'll need something like:
-
- - docker-machine
+ - make
+ - docker
  - docker-compose
  - git
- - maven 3
- - java 8
- - python 3
 
-To get the environment running:
+### Getting started
 
-  - ./init.sh  # clones submodules
-  - ./update.sh  # pulls the latest version of each submodule, runs `mvn package` in the `perkin` project and calls `docker-compose up`
+Export a ``SDX_HOME`` environment variable. This should point at a folder into
+which you wish to clone the rest of the services (e.g. ``/home/my-user/sdx``)
+[see [configuration](#configuration)]
 
-After a `docker-compose up`, the `sde-console` app will be exposed on the host ip address (on port 80).
+Clone this repository somewhere and run ``make``
 
-To work on an SDX component:
+```shell
+$ git clone git@github.com:ONSdigital/sdx-compose.git
+$ cd sdx-compose
+$ make
+```
 
-  - check out a separate copy of the component you want to work with (it's easier than dealing with submodules)
-  - scale the component you want to develop down to zero in the compose setup, e.g. `docker-compose scale sdx-decrypt=0`
-  - build and start the component you're working on and attach it to the network used by the docker compose setup using `--net=...`
- 
+This will attempt to clone the repositories into ``SDX_HOME`` and run their ``Dockerfile``'s
+
+Once built, you can bring the services up with:
+
+```shell
+$ make start
+```
+
+Rebuild services:
+
+```shell
+$ make build
+```
+
+### Configuration
+
+``sdx-compose`` is not a service in itself, but requires an environment variable
+to build and run other services.
+
+| Environment variable | Default | Description
+| -------------------- | ------- | -----------
+| SDX_HOME             | none    | The folder to clone service repositories to
+
+See the README files of each service for specific requirements they may have.
+Each service is defaulted as best to run in the local environment using files
+under [env](env)
+
+### Logging
+
+By default, all logging runs to the console. If you wish to re-enable ``syslog``
+you can do so by uncommenting the ``logger`` lines in [docker-compose.yml](docker-compose.yml).
+
+### License
+
+Copyright ©‎ 2016, Office for National Statistics (https://www.ons.gov.uk)
+
+Released under MIT license, see [LICENSE](LICENSE.md) for details.
