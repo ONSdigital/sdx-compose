@@ -38,13 +38,10 @@ services:
     build: ${SDX_HOME}/sdx-collect
     depends_on:
       - rabbit
-    environment:
-      - RECEIPT_HOST=http://sdx-mock-receipt:5000
     env_file:
       - env/rabbit.env
       - env/ftp.env
       - env/common.env
-      - env/receipt.env
     networks:
       - sdx-env
     # logging:
@@ -83,6 +80,42 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-validate"
+  sdx-receipt-rrm:
+    restart: always
+    build: ${SDX_HOME}/sdx-receipt-rrm
+    depends_on:
+      - rabbit
+    environment:
+      - RECEIPT_HOST=http://sdx-mock-receipt:5000
+    env_file:
+      - env/rabbit.env
+      - env/common.env
+      - env/receipt.env
+    networks:
+      - sdx-env
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:5514"
+    #     tag: "sdx-collect"
+  sdx-receipt-ctp:
+    restart: always
+    build: ${SDX_HOME}/sdx-receipt-ctp
+    depends_on:
+      - rabbit
+    environment:
+      - RECEIPT_HOST=http://sdx-mock-receipt:5000
+    env_file:
+      - env/rabbit.env
+      - env/common.env
+      - env/receipt.env
+    networks:
+      - sdx-env
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:5514"
+    #     tag: "sdx-collect"
   sdx-store:
     build: ${SDX_HOME}/sdx-store
     ports:
@@ -115,6 +148,20 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-transform-cs"
+  sdx-transform-ctp:
+    build: ${SDX_HOME}/sdx-transform-ctp
+    ports:
+      - "8084:5000"
+    volumes:
+      - ${SDX_HOME}/sdx-transform-ctp:/app
+    env_file:
+      - env/common.env
+    networks:
+      - sdx-env
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:5514"
   sdx-transform-testform:
     build: ${SDX_HOME}/sdx-transform-testform
     ports:
@@ -148,6 +195,23 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-downstream"
+  sdx-downstream-ctp:
+    build: ${SDX_HOME}/sdx-downstream-ctp
+    volumes:
+      - ${SDX_HOME}/sdx-downstream-ctp/app:/app
+    environment:
+      - SDX_STORE_URL=http://sdx-store:5000
+      - SDX_TRANSFORM_CTP_URL=http://sdx-transform-ctp:5000
+    env_file:
+      - env/rabbit.env
+      - env/ftp.env
+      - env/common.env
+    networks:
+      - sdx-env
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:5514"
   sdx-sequence:
     build: ${SDX_HOME}/sdx-sequence
     ports:
