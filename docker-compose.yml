@@ -148,20 +148,6 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-transform-cs"
-  sdx-transform-ctp:
-    build: ${SDX_HOME}/sdx-transform-ctp
-    ports:
-      - "8084:5000"
-    volumes:
-      - ${SDX_HOME}/sdx-transform-ctp:/app
-    env_file:
-      - env/common.env
-    networks:
-      - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
   sdx-transform-testform:
     build: ${SDX_HOME}/sdx-transform-testform
     ports:
@@ -201,7 +187,6 @@ services:
       - ${SDX_HOME}/sdx-downstream-ctp/app:/app
     environment:
       - SDX_STORE_URL=http://sdx-store:5000
-      - SDX_TRANSFORM_CTP_URL=http://sdx-transform-ctp:5000
     env_file:
       - env/rabbit.env
       - env/ftp.env
