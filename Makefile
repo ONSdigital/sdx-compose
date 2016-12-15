@@ -1,6 +1,7 @@
 PREFIX="sdx-"
 REPOS="collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "downstream" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
 
+PYTHON3=`which python3`
 NO_COLOR=\033[0m
 GREEN=\033[32;01m
 RED=\033[31;01m
@@ -32,5 +33,7 @@ start:
 	docker-compose up
 
 build:
+	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
+	${PYTHON3} ${SDX_HOME}/sdx-collect/app/common/config.py --env > ${SDX_HOME}/sdx-compose/private.env
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
