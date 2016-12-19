@@ -36,8 +36,6 @@ start:
 
 build:
 	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
-	cd ${SDX_HOME}/sdx-ops
-	${PYTHON3} -m sdx.ops.configure --env > ${SDX_HOME}/sdx-compose/env/private.env
-	cd -
+	cd ${SDX_HOME}/sdx-ops && ${PYTHON3} -m sdx.ops.configure --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
