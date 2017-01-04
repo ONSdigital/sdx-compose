@@ -1,5 +1,5 @@
 PREFIX="sdx-"
-REPOS="collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "downstream" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
+REPOS="ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "downstream" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
 
 NO_COLOR=\033[0m
 GREEN=\033[32;01m
@@ -13,7 +13,10 @@ full:
 
 check-env:
 ifndef SDX_HOME
-	$(error SDX_HOME environment variable is not set)
+	$(error SDX_HOME environment variable is not set.)
+endif
+ifndef PYTHON3
+	$(error PYTHON3 variable should point to the python binary in your dev virtual environment.)
 endif
 
 clone:
@@ -32,5 +35,7 @@ start:
 	docker-compose up
 
 build:
+	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
+	cd ${SDX_HOME}/sdx-ops && ${PYTHON3} -m sdx.ops.configure --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
