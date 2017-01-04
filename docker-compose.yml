@@ -260,6 +260,8 @@ services:
     volumes:
       - ${SDX_HOME}/sdx-console:/app
       - ./jwt-test-keys:/keys
+    environment:
+      - ENABLE_EMPTY_FTP=1
     env_file:
       - env/rabbit.env
       - env/ftp.env
