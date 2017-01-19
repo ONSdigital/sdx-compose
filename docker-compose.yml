@@ -205,7 +205,7 @@ services:
       - ${SDX_HOME}/sdx-downstream-cora/app:/app
     environment:
       - SDX_STORE_URL=http://sdx-store:5000
-      - SDX_TRANSFORM_CS_URL=http://sdx-transform-cs:5000
+      - SDX_TRANSFORM_CORA_URL=http://sdx-transform-cora:5000
     env_file:
       - env/rabbit.env
       - env/ftp.env
@@ -216,7 +216,7 @@ services:
     #   driver: syslog
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-downstream"
+    #     tag: "sdx-downstream-cora"
   sdx-downstream-ctp:
     build: ${SDX_HOME}/sdx-downstream-ctp
     volumes:
