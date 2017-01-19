@@ -1,5 +1,5 @@
 PREFIX="sdx-"
-REPOS="ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "downstream" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
+REPOS="ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
 
 NO_COLOR=\033[0m
 GREEN=\033[32;01m
