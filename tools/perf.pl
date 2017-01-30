@@ -54,7 +54,7 @@ my $submission = buildSubmission();
 
 my $ua = LWP::UserAgent->new();
 $ua->agent("SDX-PerfTest/1.0");
-$ua->timeout(1800)
+$ua->timeout(1800);
 
 my $req = HTTP::Request->new(POST => qq|http://$host:$port/|);
 $req->content_type('application/json');
