@@ -73,9 +73,10 @@ my $pstr="======================================================================
 while(1) {
   my $currentCount = getCount();
 
-  my $duration = time() - $start;
+  my $duration = parseTime(time() - $start);
+  chomp($duration);
   $percent = 100 * (($currentCount-$startingCount) / ($expectedCount-$startingCount));
-  printf "\r%3d% : %5d s", ($currentCount*100/$expectedCount), $duration;#, $pstr;
+  printf "\r%3d% : %-40s", ($currentCount*100/$expectedCount), $duration;#, $pstr;
 
   if ( $currentCount >= $expectedCount ) {
     last;
@@ -87,13 +88,17 @@ print "\nAll surveys found\n";
 printf $pat, "Final count", getCount();
 my $lastPat = $pat;
 chomp $lastPat;
-printf $lastPat . " seconds (+/- %d s)\n", "Complete in", time() - $start, $pollingResolution;
+printf $lastPat . " seconds (+/- %d s)\n", "Complete in", parseTime(time() - $start), $pollingResolution;
 
 
 exit 0;
 
 sub usage {
     print "Usage: perl perf.pl --count 10 --json 023.203.json\n"
+}
+
+sub parseTime {
+  return sprintf "%d hours, %d minutes, %d seconds\n",(gmtime $_[0])[2,1,0];
 }
 
 sub getCount  { int(`$counterCmd`) }
