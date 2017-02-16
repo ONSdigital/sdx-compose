@@ -23,11 +23,11 @@ services:
     volumes:
         - ./sftp:/tmp
         - ~/.ssh/id_rsa.pub:/home/testuser/.ssh/keys/id_rsa.pub:ro
-        - ~/.ssh/id_rsa:/etc/ssh/ssh_host_rsa_key:ro
-        - ~/.ssh/id_rsa.pub:/etc/ssh/ssh_host_rsa_key.pub:ro
+        - ~/.ssh/id_rsa:/etc/ssh/ssh_host_rsa_key
+        - ~/.ssh/id_rsa.pub:/etc/ssh/ssh_host_rsa_key.pub
     ports:
         - "2222:22"
-    command: testuser::501
+    command: testuser::501::public
   mongodb:
     image: mongo:3
     networks:
