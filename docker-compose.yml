@@ -18,6 +18,13 @@ services:
       - PUBLICHOST=pure-ftpd
     networks:
       - sdx-env
+  sftp:
+    image: atmoz/sftp
+    volumes:
+        - ./sftp:/tmp
+    ports:
+        - "2222:22"
+    command: foo:pass:1001
   mongodb:
     image: mongo:3
     networks:
