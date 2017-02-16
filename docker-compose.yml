@@ -22,9 +22,12 @@ services:
     image: atmoz/sftp
     volumes:
         - ./sftp:/tmp
+        - ~/.ssh/id_rsa.pub:/home/testuser/.ssh/keys/id_rsa.pub:ro
+        - ~/.ssh/id_rsa:/etc/ssh/ssh_host_rsa_key:ro
+        - ~/.ssh/id_rsa.pub:/etc/ssh/ssh_host_rsa_key.pub:ro
     ports:
         - "2222:22"
-    command: foo:pass:1001
+    command: testuser::501
   mongodb:
     image: mongo:3
     networks:
