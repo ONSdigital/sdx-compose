@@ -969,7 +969,7 @@
          x="424.82129"
          y="882.01483">2.3 Transfer</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lstart);stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:;stroke-miterlimit:4;stroke-dasharray:none"
        d="m 1005.4201,655.35646 0,355.21564 -162.24382,0 0,0"
        id="path15789"
        inkscape:connector-curvature="0" />
