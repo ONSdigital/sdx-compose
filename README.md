@@ -51,6 +51,16 @@ See the README files of each service for specific requirements they may have.
 Each service is defaulted as best to run in the local environment using files
 under [env](env)
 
+### Documentation
+
+To install Inkscape on MacOSX:
+
+```
+$ brew cask install xquartz
+$ brew install caskroom/cask/inkscape
+
+```
+
 ### Logging
 
 By default, all logging runs to the console. If you wish to re-enable ``syslog``
