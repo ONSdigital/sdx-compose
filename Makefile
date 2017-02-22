@@ -25,6 +25,9 @@ clone:
 		echo "(${PREFIX}$${r})"; \
 		if [ ! -e ${SDX_HOME}/${PREFIX}$${r} ]; then \
 			git clone git@github.com:ONSdigital/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
+			printf "\n[${YELLOW} Updating Dockerfile ${NO_COLOR}]\n"; \
+			sed -i.bak '/FROM / a\'$$'\n''ADD pip.conf /etc/pip.conf' "${SDX_HOME}/${PREFIX}$${r}/Dockerfile"; \
+			cp ${SDX_HOME}/sdx-compose/conf/pip.conf ${SDX_HOME}/${PREFIX}$${r}/pip.conf; \
 		else \
 			echo "  - already exists: skipping"; \
 		fi; echo ""; \
