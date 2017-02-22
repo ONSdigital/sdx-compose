@@ -6,6 +6,11 @@ GREEN=\033[32;01m
 RED=\033[31;01m
 YELLOW=\033[33;22m
 
+CLONE_FROM="git@github.com:ONSdigital"
+ifdef USE_HTTPS
+	CLONE_FROM="https://github.com/ONSdigit"
+endif
+
 all: full check-env clone build
 
 full:
@@ -24,7 +29,7 @@ clone:
 	@ for r in ${REPOS}; do \
 		echo "(${PREFIX}$${r})"; \
 		if [ ! -e ${SDX_HOME}/${PREFIX}$${r} ]; then \
-			git clone git@github.com:ONSdigital/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
+			git clone ${CLONE_FROM}/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
 			printf "\n[${YELLOW} Updating Dockerfile ${NO_COLOR}]\n"; \
 			sed -i.bak '/FROM / a\'$$'\n''ADD pip.conf /etc/pip.conf' "${SDX_HOME}/${PREFIX}$${r}/Dockerfile"; \
 			cp ${SDX_HOME}/sdx-compose/conf/pip.conf ${SDX_HOME}/${PREFIX}$${r}/pip.conf; \
@@ -38,7 +43,9 @@ start:
 	docker-compose up
 
 build:
+ifndef NO_OPS
 	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
 	cd ${SDX_HOME}/sdx-ops && ${PYTHON3} -m sdx.ops.configure --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
+endif
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
