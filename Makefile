@@ -1,5 +1,5 @@
 PREFIX="sdx-"
-REPOS="ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
+REPOS="ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "mock-receipt" "console" "transform-testform"
 
 NO_COLOR=\033[0m
 GREEN=\033[32;01m
@@ -49,3 +49,10 @@ ifndef NO_OPS
 endif
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
+
+clean: check-env
+	@ for r in ${REPOS}; do \
+		printf "\n${RED}Removing ${SDX_HOME}/${PREFIX}$${r}${NO_COLOR}"; \
+		rm -rf ${SDX_HOME}/${PREFIX}$${r}; \
+	done
+	@ printf "\n"
