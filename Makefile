@@ -8,7 +8,7 @@ YELLOW=\033[33;22m
 
 CLONE_FROM="git@github.com:ONSdigital"
 ifdef USE_HTTPS
-	CLONE_FROM="https://github.com/ONSdigit"
+	CLONE_FROM="https://github.com/ONSdigital"
 endif
 
 all: full check-env clone build
