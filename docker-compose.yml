@@ -316,6 +316,18 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-console"
+  sdx-rabbit-monitor:
+    build: ${SDX_HOME}/sdx-rabbit-monitor
+    depends_on:
+      - rabbit
+    ports:
+      - "8089:5000"
+    volumes:
+      - ${SDX_HOME}/sdx-rabbit-monitor:/app
+    env_file:
+      - env/rabbit.env
+    networks:
+      - sdx-env
 networks:
   sdx-env:
     driver: bridge
