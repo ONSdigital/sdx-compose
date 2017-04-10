@@ -326,7 +326,6 @@ services:
       - ${SDX_HOME}/sdx-rabbit-monitor:/app
     env_file:
       - env/rabbit.env
-      - env/ftp.env
       - env/common.env
     networks:
       - sdx-env
