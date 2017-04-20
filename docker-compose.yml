@@ -28,6 +28,16 @@ services:
     ports:
         - "2222:22"
     command: testuser::501::public
+  db:
+    image: postgres:9.4
+    environment:
+      POSTGRES_PASSWORD: sdx
+      POSTGRES_USER: sdx
+      POSTGRES_DB: sdx
+    ports:
+      - "5433:5432"
+    networks:
+      - sdx-env
   mongodb:
     image: mongo:3
     networks:
@@ -139,6 +149,7 @@ services:
       - MONGODB_URL=mongodb://mongodb:27017
     env_file:
       - env/common.env
+      - env/db.env
     networks:
       - sdx-env
     # logging:
@@ -249,6 +260,7 @@ services:
       - "8086:5000"
     env_file:
       - env/common.env
+      - env/db.env
     volumes:
       - ${SDX_HOME}/sdx-sequence:/app
     environment:
