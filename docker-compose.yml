@@ -30,20 +30,12 @@ services:
     command: testuser::501::public
   db:
     image: postgres:9.4
-    environment:
-      POSTGRES_PASSWORD: sdx
-      POSTGRES_USER: sdx
-      POSTGRES_DB: sdx
+    env_file:
+      - env/db.env
     ports:
       - "5433:5432"
     networks:
       - sdx-env
-  mongodb:
-    image: mongo:3
-    networks:
-      - sdx-env
-    ports:
-      - "27017:27017"
   rsyslog:
     image: voxxit/rsyslog
     volumes:
@@ -145,8 +137,6 @@ services:
       - "8085:5000"
     volumes:
       - ${SDX_HOME}/sdx-store:/app
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017
     env_file:
       - env/common.env
       - env/db.env
@@ -265,8 +255,6 @@ services:
       - env/db.env
     volumes:
       - ${SDX_HOME}/sdx-sequence:/app
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017
     networks:
       - sdx-env
     depends_on:
