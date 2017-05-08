@@ -29,9 +29,9 @@ services:
         - "2222:22"
     command: testuser::501::public
   db:
-    image: postgres:9.4
+    image: postgres:9.6
     volumes:
-      - ${SDX_HOME}/sdx-store/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./postgres/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     env_file:
       - env/db.env
     ports:
@@ -142,6 +142,7 @@ services:
     env_file:
       - env/common.env
       - env/db.env
+      - env/rabbit.env
     depends_on:
       - "db"
     networks:
