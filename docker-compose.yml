@@ -142,9 +142,9 @@ services:
     env_file:
       - env/common.env
       - env/db.env
-      - env/rabbit.env
     depends_on:
       - "db"
+      - "rabbit"
     networks:
       - sdx-env
     # logging:
