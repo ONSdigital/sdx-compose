@@ -60,4 +60,4 @@ you can do so by uncommenting the ``logger`` lines in [docker-compose.yml](docke
 
 Copyright ©‎ 2016, Office for National Statistics (https://www.ons.gov.uk)
 
-Released under MIT license, see [LICENSE](LICENSE.md) for details.
+Released under MIT license, see [LICENSE](LICENSE) for details.
