@@ -304,6 +304,7 @@ services:
   console:
     build: ${SDX_HOME}/sdx-console
     depends_on:
+      - db
       - rabbit
     ports:
       - "80:5000"
@@ -314,6 +315,7 @@ services:
       - ENABLE_EMPTY_FTP=1
     env_file:
       - env/rabbit.env
+      - env/db.env
       - env/ftp.env
       - env/common.env
     networks:
