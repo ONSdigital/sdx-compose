@@ -1,5 +1,5 @@
 PREFIX="sdx-"
-REPOS="rabbit-monitor" "ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
+REPOS="common rabbit-monitor" "ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
 
 NO_COLOR=\033[0m
 GREEN=\033[32;01m
@@ -18,6 +18,7 @@ endif
 ifndef PYTHON3
 	$(error PYTHON3 variable should point to the python binary in your dev virtual environment.)
 endif
+BIN=$(shell dirname ${PYTHON3})
 
 clone:
 	@ printf "\n[${YELLOW} Cloning into ${SDX_HOME} ${NO_COLOR}]\n"
@@ -34,9 +35,9 @@ start:
 	@ printf "\n[${YELLOW} Bringing up docker compose ${NO_COLOR}]\n"
 	docker-compose up
 
-build:
+build: clone
 	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
-	pip install git+https://github.com/ONSdigital/sdx-common#egg=sdx-common
-	cd ${SDX_HOME}/sdx-ops && ${PYTHON3} -m sdx.ops.configure --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
+	cd ${SDX_HOME}/sdx-common && ${BIN}/pip install .; cd -
+	cd ${SDX_HOME}/sdx-ops && ${PYTHON3} sdx/ops/configure.py --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
