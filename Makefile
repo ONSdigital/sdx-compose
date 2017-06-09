@@ -12,13 +12,15 @@ full:
 	@ printf "\n[${GREEN} Running full build. Please be patient this may take awhile! ${NO_COLOR}]\n"
 
 check-env:
-ifndef SDX_HOME
+ifeq ($(SDX_HOME),)
 	$(error SDX_HOME environment variable is not set.)
 endif
-ifndef PYTHON3
+ifeq ($(PYTHON3),)
 	$(error PYTHON3 variable should point to the python binary in your dev virtual environment.)
 endif
-BIN=$(shell dirname ${PYTHON3})
+	@ printf "\n[${YELLOW} SDX_HOME set to ${SDX_HOME} ${NO_COLOR}]\n"
+	@ printf "\n[${YELLOW} PYTHON3 set to ${PYTHON3} ${NO_COLOR}]\n"
+	BIN=$(shell dirname ${PYTHON3})
 
 clone:
 	@ printf "\n[${YELLOW} Cloning into ${SDX_HOME} ${NO_COLOR}]\n"
@@ -35,7 +37,7 @@ start:
 	@ printf "\n[${YELLOW} Bringing up docker compose ${NO_COLOR}]\n"
 	docker-compose up
 
-build: clone
+build: check-env clone
 	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
 	cd ${SDX_HOME}/sdx-common && ${BIN}/pip install .; cd -
 	cd ${SDX_HOME}/sdx-ops && ${PYTHON3} sdx/ops/configure.py --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
