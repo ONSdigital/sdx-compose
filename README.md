@@ -15,6 +15,8 @@ Export a ``SDX_HOME`` environment variable. This should point at a folder into
 which you wish to clone the rest of the services (e.g. ``/home/my-user/sdx``)
 [see [configuration](#configuration)]
 
+Set up a virtual environment using Python3 and ensure you activate it.
+
 Clone this repository somewhere and run ``make``
 
 ```shell
