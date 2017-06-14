@@ -12,17 +12,17 @@ full:
 	@ printf "\n[${GREEN} Running full build. Please be patient this may take awhile! ${NO_COLOR}]\n"
 
 check-env:
-ifeq ($(SDX_HOME),)
+ifndef $(SDX_HOME)
 	$(error SDX_HOME environment variable is not set.)
 endif
-ifeq ($(PYTHON3),)
+ifndef $(PYTHON3)
 	$(error PYTHON3 variable should point to the python binary in your dev virtual environment.)
 endif
 	@ printf "\n[${YELLOW} SDX_HOME set to ${SDX_HOME} ${NO_COLOR}]\n"
 	@ printf "\n[${YELLOW} PYTHON3 set to ${PYTHON3} ${NO_COLOR}]\n"
 	BIN=$(shell dirname ${PYTHON3})
 
-clone:
+clone: check-env
 	@ printf "\n[${YELLOW} Cloning into ${SDX_HOME} ${NO_COLOR}]\n"
 	@ for r in ${REPOS}; do \
 		echo "(${PREFIX}$${r})"; \
