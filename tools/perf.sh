@@ -3,7 +3,6 @@
 EXPECTED=${EXPECTED:=1}
 RESOLUTION=${RESOLUTION:=1}
 PORT=${PORT:=80}
-CMD='find pure-ftp-structure/EDC_QData -type f | wc -l'
 
 # Thingy for the progess bar
 pstr="[=======================================================================]"
@@ -26,8 +25,8 @@ do
   sleep ${RESOLUTION}
 
   # Work out the percentage complete
-  PERC=$((100*${DONE}/${EXPECTED}))
-  printf "\r%3d.%1d%% %.${PERC}s" $(( ${DONE} * 100 / ${EXPECTED} )) $(( (${DONE} * 1000 / ${EXPECTED}) % 10 )) $pstr
+  PERC=$((100*DONE/EXPECTED))
+  printf "\r%3d.%1d%% %.${PERC}s" $(( DONE * 100 / EXPECTED )) $(( (DONE * 1000 / EXPECTED) % 10 )) $pstr
 
   if [ "${DONE}" -ge "${EXPECTED}" ];
   then
@@ -35,8 +34,7 @@ do
   fi
 done
 
-DURATION=$((${SECONDS}-${START}))
+DURATION=$((SECONDS-START))
 echo
 echo "Done at $(date) [took approx ${DURATION}s]"
 echo "Final count $(find pure-ftp-structure/EDC_QData -type f | wc -l)"
-
