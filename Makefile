@@ -29,7 +29,8 @@ clone: check-env
 		if [ ! -e ${SDX_HOME}/${PREFIX}$${r} ]; then \
 			git clone git@github.com:ONSdigital/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
 		else \
-			echo "  - already exists: skipping"; \
+			echo "Repo already cloned - pulling"; \
+			cd ${SDX_HOME}/${PREFIX}$${r}; git pull; cd; \
 		fi; echo ""; \
 	done
 
