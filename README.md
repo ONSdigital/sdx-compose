@@ -48,7 +48,7 @@ to build and run other services.
 | Environment variable | Default | Description
 | -------------------- | ------- | -----------
 | SDX_HOME             | _none_  | The folder to clone service repositories to
-| PYTHON3              | _none_  | Path to python3 executable (e.g. ``/usr/local/bin/python3``). Used by receipt service keygen.
+
 
 See the README files of each service for specific requirements they may have.
 Each service is defaulted as best to run in the local environment using files
