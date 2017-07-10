@@ -29,8 +29,20 @@ clone: check-env
 		if [ ! -e ${SDX_HOME}/${PREFIX}$${r} ]; then \
 			git clone git@github.com:ONSdigital/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
 		else \
-			echo "Repo already cloned - pulling"; \
-			cd ${SDX_HOME}/${PREFIX}$${r}; git pull; cd; \
+			echo "  - already exists: skipping"; \
+		fi; echo ""; \
+	done
+
+update: check-env
+	@ printf "\n[${YELLOW} Updating/Cloning repos in ${SDX_HOME} ${NO_COLOR}]\n"
+	@ for r in ${REPOS}; do \
+		echo "(${PREFIX}$${r})"; \
+		if [ ! -e ${SDX_HOME}/${PREFIX}$${r} ]; then \
+			git clone git@github.com:ONSdigital/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
+		else \
+			cd ${SDX_HOME}/${PREFIX}$${r}; \
+			echo "On branch [`git symbolic-ref --short HEAD`], updating repo..."; \
+			git pull; cd; \
 		fi; echo ""; \
 	done
 
