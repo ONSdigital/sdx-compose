@@ -8,6 +8,7 @@ This repository allows you to spin up a local test environment for the ``sdx-`` 
  - docker
  - docker-compose
  - git
+ - python3
 
 ### Getting started
 
@@ -47,21 +48,11 @@ to build and run other services.
 | Environment variable | Default | Description
 | -------------------- | ------- | -----------
 | SDX_HOME             | _none_  | The folder to clone service repositories to
-| PYTHON3              | _none_  | Path to python3 executable (e.g. ``/usr/local/bin/python3``). Used by receipt service keygen.
+
 
 See the README files of each service for specific requirements they may have.
 Each service is defaulted as best to run in the local environment using files
 under [env](env)
-
-### Documentation
-
-To install Inkscape on MacOSX:
-
-```
-$ brew cask install xquartz
-$ brew install caskroom/cask/inkscape
-
-```
 
 ### Logging
 
