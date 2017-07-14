@@ -38,15 +38,6 @@ services:
       - "5433:5432"
     networks:
       - sdx-env
-  rsyslog:
-    image: voxxit/rsyslog
-    volumes:
-      - ./logs:/var/log
-    ports:
-      - 5514:514/udp
-    restart: always
-    networks:
-      - sdx-env
   sdx-collect:
     restart: always
     build: ${SDX_HOME}/sdx-collect
@@ -182,21 +173,6 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-transform-cora"
-  sdx-transform-testform:
-    build: ${SDX_HOME}/sdx-transform-testform
-    ports:
-      - "8087:5000"
-    env_file:
-      - env/common.env
-    volumes:
-      - ${SDX_HOME}/sdx-transform-testform:/app
-    networks:
-      - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-transform-testform"
   sdx-downstream:
     build: ${SDX_HOME}/sdx-downstream
     volumes:
@@ -267,24 +243,6 @@ services:
     #     options:
     #       syslog-address: "udp://127.0.0.1:5514"
     #       tag: "sdx-sequence"
-  bdd:
-    build: ${SDX_HOME}/sdx-bdd
-    ports:
-      - "8081:5000"
-    volumes:
-      - ${SDX_HOME}/sdx-bdd:/app
-      - ./jwt-test-keys:/keys
-    networks:
-      - sdx-env
-    env_file:
-      - env/rabbit.env
-      - env/ftp.env
-      - env/common.env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-bdd"
   sdx-mock-receipt:
     build: ${SDX_HOME}/sdx-mock-receipt
     ports:
