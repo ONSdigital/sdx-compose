@@ -40,6 +40,5 @@ start:
 build: check-env clone
 	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
 	cd ${SDX_HOME}/sdx-common && pip install .; cd -
-	cd ${SDX_HOME}/sdx-ops && python sdx/ops/configure.py --env > ${SDX_HOME}/sdx-compose/env/private.env ;cd -
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
