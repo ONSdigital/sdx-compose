@@ -3,3 +3,4 @@
 - Update error handling of missing env vars, added this check for clone as this needs SDX_HOME set up for it to work.
 - Makefile now has an 'update' target to update all SDX repositories.
 - Remove guidance for setup of python3 variable in readme
+- Remove generation of symmetric keys
