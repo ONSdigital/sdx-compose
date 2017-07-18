@@ -33,6 +33,19 @@ clone: check-env
 		fi; echo ""; \
 	done
 
+update: check-env
+	@ printf "\n[${YELLOW} Updating/Cloning repos in ${SDX_HOME} ${NO_COLOR}]\n"
+	@ for r in ${REPOS}; do \
+		echo "(${PREFIX}$${r})"; \
+		if [ ! -e ${SDX_HOME}/${PREFIX}$${r} ]; then \
+			git clone git@github.com:ONSdigital/${PREFIX}$${r}.git ${SDX_HOME}/${PREFIX}$${r}; \
+		else \
+			cd ${SDX_HOME}/${PREFIX}$${r}; \
+			echo "On branch [`git symbolic-ref --short HEAD`], updating repo..."; \
+			git pull; cd; \
+		fi; echo ""; \
+	done
+
 start:
 	@ printf "\n[${YELLOW} Bringing up docker compose ${NO_COLOR}]\n"
 	docker-compose up
