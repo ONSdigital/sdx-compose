@@ -15,12 +15,7 @@ check-env:
 ifndef SDX_HOME
 	$(error SDX_HOME environment variable is not set.)
 endif
-ifndef PYTHON3
-	$(error PYTHON3 variable should point to the python binary in your dev virtual environment.)
-endif
 	@ printf "\n[${YELLOW} SDX_HOME set to ${SDX_HOME} ${NO_COLOR}]\n"
-	@ printf "\n[${YELLOW} PYTHON3 set to ${PYTHON3} ${NO_COLOR}]\n"
-	BIN=$(shell dirname ${PYTHON3})
 
 clone: check-env
 	@ printf "\n[${YELLOW} Cloning into ${SDX_HOME} ${NO_COLOR}]\n"
