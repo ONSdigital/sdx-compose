@@ -1,5 +1,5 @@
 PREFIX="sdx-"
-REPOS="common" "rabbit-monitor" "ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "bdd" "mock-receipt" "console" "transform-testform"
+REPOS="rabbit-monitor" "ops" "collect" "decrypt" "validate" "receipt-rrm" "receipt-ctp" "store" "transform-cs" "transform-cora" "downstream" "downstream-cora" "downstream-ctp" "sequence" "console"
 
 NO_COLOR=\033[0m
 GREEN=\033[32;01m
@@ -45,8 +45,6 @@ start:
 	@ printf "\n[${YELLOW} Bringing up docker compose ${NO_COLOR}]\n"
 	docker-compose up
 
-build: check-env clone
-	@ printf "\n[${GREEN} Generating environment variables... ${NO_COLOR}]\n"
-	cd ${SDX_HOME}/sdx-common && pip install .; cd -
+build: check-env
 	@ printf "\n[${YELLOW} Refreshing build ${NO_COLOR}]\n"
 	docker-compose build
