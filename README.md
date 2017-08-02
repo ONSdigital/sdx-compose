@@ -40,6 +40,12 @@ Rebuild services:
 $ make build
 ```
 
+To git pull all the sdx repos (and to discover what branch each repo is on):
+
+```shell
+$ make update
+```
+
 ### Configuration
 
 ``sdx-compose`` is not a service in itself, but requires an environment variable
