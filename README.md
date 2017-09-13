@@ -65,6 +65,10 @@ under [env](env)
 By default, all logging runs to the console. If you wish to re-enable ``syslog``
 you can do so by uncommenting the ``logger`` lines in [docker-compose.yml](docker-compose.yml).
 
+### Architecture
+
+![SDX Architecture](docs/SDX.png)
+
 ### License
 
 Copyright ©‎ 2016, Office for National Statistics (https://www.ons.gov.uk)
