@@ -105,25 +105,6 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-collect"
-  sdx-receipt-ctp:
-    restart: always
-    build: ${SDX_HOME}/sdx-receipt-ctp
-    depends_on:
-      - rabbit
-    environment:
-      - RECEIPT_HOST=http://sdx-mock-receipt:5000
-    env_file:
-      - env/rabbit.env
-      - env/common.env
-      - env/receipt.env
-      - env/private.env
-    networks:
-      - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-collect"
   sdx-store:
     build: ${SDX_HOME}/sdx-store
     ports:
@@ -209,22 +190,6 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-downstream-cora"
-  sdx-downstream-ctp:
-    build: ${SDX_HOME}/sdx-downstream-ctp
-    volumes:
-      - ${SDX_HOME}/sdx-downstream-ctp/app:/app
-    environment:
-      - SDX_STORE_URL=http://sdx-store:5000
-    env_file:
-      - env/rabbit.env
-      - env/ftp.env
-      - env/common.env
-    networks:
-      - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
   sdx-sequence:
     build: ${SDX_HOME}/sdx-sequence
     ports:
