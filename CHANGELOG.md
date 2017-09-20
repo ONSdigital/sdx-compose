@@ -5,4 +5,4 @@
 - Remove guidance for setup of python3 variable in readme
 - Added feedback table to sql script
 - Remove generation of symmetric keys
-
+- Remove use of ctp services
