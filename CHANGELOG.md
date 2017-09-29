@@ -6,3 +6,4 @@
 - Added feedback table to sql script
 - Remove generation of symmetric keys
 - Remove use of ctp services
+- Remove use of downstream-cora now that downstream is 1 service
