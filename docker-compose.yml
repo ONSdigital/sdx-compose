@@ -59,7 +59,6 @@ services:
     build: ${SDX_HOME}/sdx-decrypt
     volumes:
       - ${SDX_HOME}/sdx-decrypt:/app
-      - ./jwt-test-keys:/keys
     env_file:
       - env/common.env
     networks:
