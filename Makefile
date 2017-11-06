@@ -1,5 +1,6 @@
 PREFIX="sdx-"
-REPOS="rabbit-monitor" "ops" "collect" "decrypt" "validate" "receipt-rrm" "store" "transform-cs" "transform-cora" "downstream" "sequence" "console" "mock-receipt" "seft-consumer-service" "seft-publisher-service"
+REPOS="gateway" "rabbit-monitor" "ops" "collect" "decrypt" "validate" "receipt-rrm" "store" "transform-cs" "transform-cora" "downstream" "sequence" "console" "mock-receipt" "seft-consumer-service" "seft-publisher-service"
+
 
 NO_COLOR=\033[0m
 GREEN=\033[32;01m

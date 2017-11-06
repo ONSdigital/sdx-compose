@@ -241,6 +241,19 @@ services:
       - env/rabbit.env
     networks:
       - sdx-env
+  sdx-gateway:
+    build: ${SDX_HOME}/sdx-gateway
+    depends_on:
+      - rabbit
+    ports:
+      - "8090:5000"
+    volumes:
+      - ${SDX_HOME}/sdx-gateway:/app
+    env_file:
+      - env/common.env
+      - env/rabbit.env
+    networks:
+      - sdx-env
 networks:
   sdx-env:
     driver: bridge
