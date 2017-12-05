@@ -2,6 +2,7 @@ pure-ftp-structure/EDC_QReceipts/*
 pure-ftp-structure/EDC_QImages/Images/*
 pure-ftp-structure/EDC_QImages/Index/*
 pure-ftp-structure/EDC_QData/*
+pure-ftp-structure/EDC_QJson/*
 *.swp
 
 # Python virtualenv
