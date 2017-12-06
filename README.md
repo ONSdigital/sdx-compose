@@ -65,6 +65,10 @@ under [env](env)
 By default, all logging runs to the console. If you wish to re-enable ``syslog``
 you can do so by uncommenting the ``logger`` lines in [docker-compose.yml](docker-compose.yml).
 
+### FTP Storage
+Output files are stored locally in the pure-ftp-structure folder. To add new directories , add them here with a 
+file called .placeholder checked into git so that git creates the folder.
+
 ### Architecture
 
 ![SDX Architecture](docs/SDX.png)
