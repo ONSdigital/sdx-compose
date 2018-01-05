@@ -55,6 +55,23 @@ services:
     #   options:
     #     syslog-address: "udp://127.0.0.1:5514"
     #     tag: "sdx-collect"
+  sdx-seft-consumer-service:
+    restart: always
+    build: ${SDX_HOME}/sdx-seft-consumer-service
+    depends_on:
+      - rabbit
+    env_file:
+      - env/rabbit.env
+      - env/ftp.env
+      - env/common.env
+      - env/private.env
+    networks:
+      - sdx-env
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "udp://127.0.0.1:5514"
+    #     tag: "sdx-seft-consumer-service"
   sdx-decrypt:
     build: ${SDX_HOME}/sdx-decrypt
     volumes:
