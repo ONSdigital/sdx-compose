@@ -1,4 +1,4 @@
-version: '2'
+version: '2.3'
 services:
   rabbit:
     image: rabbitmq:3-management
@@ -8,9 +8,12 @@ services:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - sdx-env
+      sdx-env:
+        aliases:
+          - rabbit
+          - sdx-env
   pure-ftpd:
-    image: stilliard/pure-ftpd
+    image: ryangrundy7/ftpd
     volumes:
       - ./pure-ftp:/etc/pure-ftpd
       - ./pure-ftp-structure:/home/ftpusers/ons
@@ -271,6 +274,15 @@ services:
       - env/rabbit.env
     networks:
       - sdx-env
+  start_dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - rabbit
+    command: rabbit:5672
+    networks:
+      sdx-env:
+        aliases:
+          - start_dependencies
 networks:
   sdx-env:
     driver: bridge
