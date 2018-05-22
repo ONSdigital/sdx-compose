@@ -44,7 +44,7 @@ update: check-env
 
 start:
 	@ printf "\n[${YELLOW} Bringing up docker compose ${NO_COLOR}]\n"
-	docker-compose run  --rm start_dependencies
+	docker-compose run --rm start_dependencies
 	docker-compose up --no-deps
 
 build: check-env
