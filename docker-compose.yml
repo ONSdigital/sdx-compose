@@ -13,7 +13,7 @@ services:
           - rabbit
           - sdx-env
   pure-ftpd:
-    image: ryangrundy7/ftpd
+    image: onsdigital/pure-ftpd
     volumes:
       - ./pure-ftp:/etc/pure-ftpd
       - ./pure-ftp-structure:/home/ftpusers/ons
