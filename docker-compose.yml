@@ -43,11 +43,6 @@ services:
       - env/private.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-collect"
   sdx-seft-consumer-service:
     restart: always
     build: ${SDX_HOME}/sdx-seft-consumer-service
@@ -60,11 +55,6 @@ services:
       - env/private.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-seft-consumer-service"
   sdx-decrypt:
     build: ${SDX_HOME}/sdx-decrypt
     volumes:
@@ -75,11 +65,6 @@ services:
       sdx-env:
         aliases:
            - posie
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-decrypt"
   sdx-validate:
     build: ${SDX_HOME}/sdx-validate
     ports:
@@ -90,11 +75,6 @@ services:
      - sdx-env
     env_file:
      - env/common.env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-validate"
   sdx-receipt-rrm:
     restart: always
     build: ${SDX_HOME}/sdx-receipt-rrm
@@ -109,11 +89,6 @@ services:
       - env/private.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-collect"
   sdx-store:
     build: ${SDX_HOME}/sdx-store
     ports:
@@ -128,11 +103,6 @@ services:
       - "rabbit"
     networks:
       - sdx-env
-    # logging:
-    #     driver: syslog
-    #     options:
-    #       syslog-address: "udp://127.0.0.1:5514"
-    #       tag: "sdx-store"
   sdx-transform-cs:
     build: ${SDX_HOME}/sdx-transform-cs
     ports:
@@ -143,11 +113,6 @@ services:
       - env/common.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-transform-cs"
   sdx-transform-cora:
     build: ${SDX_HOME}/sdx-transform-cora
     ports:
@@ -158,11 +123,6 @@ services:
       - env/common.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-transform-cora"
   sdx-downstream:
     build: ${SDX_HOME}/sdx-downstream
     volumes:
@@ -194,11 +154,6 @@ services:
       - sdx-env
     depends_on:
       - "db"
-    # logging:
-    #     driver: syslog
-    #     options:
-    #       syslog-address: "udp://127.0.0.1:5514"
-    #       tag: "sdx-sequence"
   sdx-mock-receipt:
     build: ${SDX_HOME}/sdx-mock-receipt
     ports:
@@ -210,11 +165,6 @@ services:
       - env/receipt.env
     networks:
       - sdx-env
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "udp://127.0.0.1:5514"
-        tag: "sdx-mock-receipt"
   console:
     build: ${SDX_HOME}/sdx-console
     depends_on:
@@ -234,11 +184,6 @@ services:
       - env/common.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-console"
   sdx-rabbit-monitor:
     build: ${SDX_HOME}/sdx-rabbit-monitor
     depends_on:
