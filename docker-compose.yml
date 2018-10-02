@@ -32,7 +32,6 @@ services:
     networks:
       - sdx-env
   sdx-collect:
-    restart: always
     build: ${SDX_HOME}/sdx-collect
     depends_on:
       - rabbit
@@ -44,7 +43,6 @@ services:
     networks:
       - sdx-env
   sdx-seft-consumer-service:
-    restart: always
     build: ${SDX_HOME}/sdx-seft-consumer-service
     depends_on:
       - rabbit
@@ -76,7 +74,6 @@ services:
     env_file:
      - env/common.env
   sdx-receipt-rrm:
-    restart: always
     build: ${SDX_HOME}/sdx-receipt-rrm
     depends_on:
       - rabbit
@@ -136,11 +133,6 @@ services:
       - env/common.env
     networks:
       - sdx-env
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "udp://127.0.0.1:5514"
-    #     tag: "sdx-downstream"
   sdx-sequence:
     build: ${SDX_HOME}/sdx-sequence
     ports:
