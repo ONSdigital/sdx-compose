@@ -22,7 +22,7 @@ services:
     networks:
       - sdx-env
   db:
-    image: postgres:9.6
+    image: postgres:9.6.2
     volumes:
       - ./postgres/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     env_file:
