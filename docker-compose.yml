@@ -46,6 +46,9 @@ services:
     build: ${SDX_HOME}/sdx-seft-consumer-service
     depends_on:
       - rabbit
+    environment:
+      - RM_SDX_GATEWAY_URL=http://sdx-mock-receipt:5000/receipts
+      - ANTI_VIRUS_ENABLED=False
     env_file:
       - env/rabbit.env
       - env/ftp.env
