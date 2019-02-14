@@ -1,4 +1,6 @@
 ## Unreleased
+- Remove sdx-ops from repos that are pulled in
+- Remove transform-cora now that transform-cs now handles all transformations
 - Added EDC_QJson folders
 - Add Gateway service build processes
 - Updated keys to match decrypt

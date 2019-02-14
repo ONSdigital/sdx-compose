@@ -113,16 +113,6 @@ services:
       - env/common.env
     networks:
       - sdx-env
-  sdx-transform-cora:
-    build: ${SDX_HOME}/sdx-transform-cora
-    ports:
-      - "8084:5000"
-    volumes:
-      - ${SDX_HOME}/sdx-transform-cora:/app
-    env_file:
-      - env/common.env
-    networks:
-      - sdx-env
   sdx-downstream:
     build: ${SDX_HOME}/sdx-downstream
     volumes:
