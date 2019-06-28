@@ -77,13 +77,13 @@ file called .placeholder checked into git so that git creates the folder.
 ### Architecture
 
 Main Surveys
-![SDX Architecture](docs/SDXmainpath.png)
+![SDX Architecture](docs/SDX1mainpath.png)
 
 DAP
-![SDX Architecture](docs/SDXdappath.png)
+![SDX Architecture](docs/SDX2dappath.png)
 
 SEFT
-![SDX Architecture](docs/SDXseftpath.png)
+![SDX Architecture](docs/SDX3seftpath.png)
 
 ### License
 
