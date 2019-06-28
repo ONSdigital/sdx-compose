@@ -197,12 +197,8 @@ services:
 
   sdx-seft-publisher-service:
     build: ${SDX_HOME}/sdx-seft-publisher-service
-    ports:
-      - "8087:8087"
     depends_on:
       - rabbit
-    volumes:
-      - ${SDX_HOME}/sdx-seft-publisher-service:/app
     env_file:
       - env/rabbit.env
       - env/common.env
