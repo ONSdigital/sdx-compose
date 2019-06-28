@@ -194,6 +194,22 @@ services:
       - env/rabbit.env
     networks:
       - sdx-env
+
+  sdx-seft-publisher-service:
+    build: ${SDX_HOME}/sdx-seft-publisher-service
+    ports:
+      - "8087:8087"
+    depends_on:
+      - rabbit
+    volumes:
+      - ${SDX_HOME}/sdx-seft-publisher-service:/app
+    env_file:
+      - env/rabbit.env
+      - env/common.env
+      - env/ftp.env
+    networks:
+      - sdx-env
+
   start_dependencies:
     image: dadarek/wait-for-dependencies
     depends_on:
