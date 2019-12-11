@@ -95,6 +95,8 @@ services:
       - "8085:5000"
     volumes:
       - ${SDX_HOME}/sdx-store:/app
+    environment:
+      - RESPONSE_RETENTION_DAYS=90
     env_file:
       - env/common.env
       - env/db.env
