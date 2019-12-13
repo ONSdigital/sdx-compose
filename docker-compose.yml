@@ -96,7 +96,7 @@ services:
     volumes:
       - ${SDX_HOME}/sdx-store:/app
     environment:
-      - RESPONSE_RETENTION_DAYS=90
+      - SDX_STORE_RESPONSE_RETENTION_DAYS=90
     env_file:
       - env/common.env
       - env/db.env
