@@ -11,14 +11,19 @@ This repository allows you to spin up a local test environment for the ``sdx-`` 
  - python3
 
 ### Getting started
+Make a projects directory e.g. `/Users/[NAME]/projects`
+In the ``projects`` make a directory named "sdx". this is where the SDX services will be.
 
-Export a ``SDX_HOME`` environment variable. This should point at a folder into
-which you wish to clone the rest of the services (e.g. ``/home/my-user/sdx``)
+Export a ``SDX_HOME`` environment variable.
 [see [configuration](#configuration)]
+HOW-TO:
+Run this command in terminal -> ``vi ~/.bash_profile``
+Press `i` to edit the text and paste this on a new line -> ``export SDX_HOME=$HOME/projects/sdx``
+Type ``:wq`` and press Enter. This writes the changes and exits the editor.
 
 Set up a virtual environment using Python3 and ensure you activate it.
 
-Clone this repository somewhere and run ``make``
+cd into `/Users/[NAME]/projects/sdx` and run the following:
 
 ```shell
 $ git clone git@github.com:ONSdigital/sdx-compose.git
