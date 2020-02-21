@@ -29,7 +29,6 @@ $ git clone git@github.com:ONSdigital/sdx-compose.git
 $ cd sdx-compose
 $ make
 ```
-
 This will attempt to clone the repositories into ``SDX_HOME`` and run their ``Dockerfile``'s
 
 Once built, you can bring the services up with:
