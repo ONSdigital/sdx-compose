@@ -15,12 +15,12 @@ Make a directory called `sdx` e.g. `/users/[your_name]/sdx`.
 
 This will contain all the files for the sdx services,
 
-Export an environment variable called ``SDX_HOME`` to the `sdx` folder.
 [see [configuration](#configuration)]
 
 Open your .bash_profile and add the line: ``export SDX_HOME=$HOME/[LOCATION OF SDX FOLDER]``
 
 Set up a virtual environment using Python3 and ensure you activate it.
+Apply these changes to your bash_profile by doing ``~/.bash_profile``
 
 Do ``cd $SDX_HOME`` and run the following:
 
