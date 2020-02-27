@@ -17,18 +17,18 @@ This will contain all the files for the sdx services,
 
 [see [configuration](#configuration)]
 
-Open your .bash_profile and add the line: ``export SDX_HOME=[LOCATION OF SDX FOLDER]``
+Open your .bash_profile and add the line: `export SDX_HOME=[LOCATION OF SDX FOLDER]`
 
-Apply these changes to your bash_profile by doing ``~/.bash_profile``
+Apply these changes to your bash_profile by doing `. ~/.bash_profile`
 
-Do ``cd $SDX_HOME`` and run the following:
+Do `cd $SDX_HOME` and run the following:
 
 ```shell
 $ git clone git@github.com:ONSdigital/sdx-compose.git
 $ cd sdx-compose
 $ make
 ```
-This will attempt to clone the repositories into ``SDX_HOME`` and run their ``Dockerfile``'s
+This will attempt to clone the repositories into `SDX_HOME` and run their `Dockerfile`'s
 
 Once built, you can bring the services up with:
 
