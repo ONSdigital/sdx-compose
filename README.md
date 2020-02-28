@@ -46,7 +46,8 @@ Once built, you can bring the services up with:
 $ make start
 ```
 
-Once the services have started you can log in at localhost with:
+Once the services have started, you can access sdx-console on http://localhost. 
+sdx-console is an easy way to test the features of SDX. The login credentials for this service are:
 
 username: admin
 password: admin
