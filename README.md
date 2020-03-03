@@ -28,23 +28,31 @@ $ make
 
 This will attempt to clone the repositories into ``SDX_HOME`` and run their ``Dockerfile``'s
 
+To git pull all the sdx repos (and to discover what branch each repo is on):
+
+```shell
+$ make update
+```
+
+To rebuild the services:
+
+```shell
+$ make build
+```
+
 Once built, you can bring the services up with:
 
 ```shell
 $ make start
 ```
 
-Rebuild services:
+Once the services have started, you can access sdx-console on http://localhost. 
+sdx-console is an easy way to test the features of SDX. The login credentials for this service are:
 
-```shell
-$ make build
-```
+username: admin
+password: admin
 
-To git pull all the sdx repos (and to discover what branch each repo is on):
 
-```shell
-$ make update
-```
 
 ### Configuration
 
