@@ -1,0 +1,48 @@
+@startuml
+
+skinparam EntityBackgroundColor DeepSkyBlue
+skinparam DatabaseBackgroundColor DeepSkyBlue
+
+entity gateway_collect
+entity survey_quarantine
+entity rrm_receipt
+entity sdx_downstream
+entity sdx_dap
+
+participant Collect
+participant Decrypt
+participant Validate
+participant Store
+
+database Postgres
+
+gateway_collect --> Collect: Consume message
+activate Collect #FFBBBB
+Collect -> Decrypt: POST /decrypt
+Collect -> Validate: POST /validate
+Collect -> Store: POST /responses
+activate Store #FFBBBB
+Store -> Postgres
+deactivate Store
+
+alt
+
+    opt requires receipt
+        Collect --> rrm_receipt
+    end
+
+    opt requires downstream processing
+        Collect --> sdx_downstream
+    end
+
+    opt requires dap processing
+        Collect --> sdx_dap
+    end
+
+else  QuarantinableError
+    Collect --> survey_quarantine
+end
+
+deactivate Collect
+
+@enduml
