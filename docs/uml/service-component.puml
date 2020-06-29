@@ -1,0 +1,35 @@
+@startuml
+
+cloud "AWS" {
+[gateway_collect]
+[survey_quarantine]
+[sdx_downstream]
+[downstream_quarantine]
+[rrm_receipt]
+[sdx_dap]
+[rrm-receipt-quarantine]
+}
+
+node "ONS Crown"{
+package "SDX" {
+[Gateway] as g
+[Collect] as c
+[Decrypt] as d
+[Validate] as v
+[Store] as st
+[Downstream] as ds
+[TransformCS] as t
+[Sequence] as seq
+["Receipt-RRM"] as r
+["SEFT-Consumer-Service"] as scs
+["SEFT-Publisher-Service] as sps
+["RM-SDX-Gateway"] as rmg
+}
+
+folder ftp{
+}
+database "Postgres"{
+}
+}
+
+@enduml

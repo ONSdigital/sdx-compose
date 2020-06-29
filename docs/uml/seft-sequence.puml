@@ -1,0 +1,13 @@
+@startuml
+
+skinparam EntityBackgroundColor DeepSkyBlue
+skinparam DatabaseBackgroundColor DeepSkyBlue
+skinparam CollectionsBackgroundColor LawnGreen
+
+entity seft_downstream
+entity seft_quarantine
+
+participant "SEFT-Consumer-Service"
+collections FTP
+
+@enduml

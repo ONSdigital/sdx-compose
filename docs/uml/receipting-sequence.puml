@@ -1,0 +1,21 @@
+@startuml
+
+skinparam EntityBackgroundColor DeepSkyBlue
+
+entity "rrm-receipt" as rq
+entity "rrm-receipt-quarantine" as qq
+participant "Receipt-RRM" as r
+participant "RM-SDX-Gateway" as g
+
+rq --> r : Consume message
+activate r #FFBBBB
+alt
+r -> r : decrypt
+r -> r : validate
+r -> g : POST /receipts
+else error
+    r --> qq
+end
+deactivate r
+
+@enduml

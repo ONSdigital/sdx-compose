@@ -28,15 +28,15 @@ deactivate Store
 alt
 
     opt requires receipt
-        Collect --> rrm_receipt
+        Collect --> rrm_receipt: Publish receipt
     end
 
     opt requires downstream processing
-        Collect --> sdx_downstream
+        Collect --> sdx_downstream: Publish tx_id
     end
 
     opt requires dap processing
-        Collect --> sdx_dap
+        Collect --> sdx_dap: Publish metadata
     end
 
 else  QuarantinableError
