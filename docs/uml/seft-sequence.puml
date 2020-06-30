@@ -1,0 +1,30 @@
+@startuml
+
+skinparam EntityBackgroundColor DeepSkyBlue
+skinparam DatabaseBackgroundColor DeepSkyBlue
+skinparam CollectionsBackgroundColor LawnGreen
+
+entity Seft.Responses as srq
+entity Seft.Responses.Quarantine as srqq
+entity Seft.CollectionInstruments as sciq
+
+participant "SEFT-Consumer-Service" as scs
+participant "SEFT-Publisher-Service" as sps
+collections "FTP Server" as ftp
+
+srq -> scs : Consume message
+activate scs #FFBBBB
+alt
+scs -> ftp : Deliver file
+else Error
+scs -> srqq :
+end
+deactivate scs
+
+
+sps -> ftp : Read file
+activate sps #FFBBBB
+sps -> sciq : Publish to queue
+deactivate sps
+
+@enduml

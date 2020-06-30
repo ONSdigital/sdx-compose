@@ -1,4 +1,5 @@
 ## Unreleased
+- Added uml diagrams
 - Added support for environment variables for deleting old items from sdx-store
 - Changed sdx-gatway port mapping
 - Remove sdx-ops from repos that are pulled in

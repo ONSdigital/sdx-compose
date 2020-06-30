@@ -1,0 +1,90 @@
+@startuml
+
+skinparam componentStyle uml2
+
+cloud "AWS" {
+    package Queues{
+    () gateway_collect
+    () survey_quarantine
+    () sdx_downstream
+    () downstream_quarantine
+    () rrm_receipt
+    () sdx_dap
+    () rrm_receipt_quarantine
+    () "Seft.CollectionInstruments"
+    () "Seft.Responses"
+    () "Seft.Responses.Quarantine"
+    }
+}
+
+cloud "GCP" {
+[RM-SDX-Gateway] as rmg
+}
+
+node "ONS Crown" #lightgrey{
+    package "SDX" #white{
+    [Gateway] as g
+    [Collect] as c
+    [Decrypt] as d
+    [Validate] as v
+    [Store] as st
+    [Downstream] as ds
+    [TransformCS] as t
+    [Sequence] as seq
+    [Receipt-RRM] as r
+    [SEFT-Consumer-Service] as scs
+    [SEFT-Publisher-Service] as sps
+    }
+
+    node "FTP Server" as ftp #LawnGreen{
+    }
+    database Postgres as pg #DeepSkyBlue{
+    }
+}
+
+gateway_collect -[hidden]-> survey_quarantine
+survey_quarantine -[hidden]-> sdx_dap
+sdx_dap -[hidden]-> sdx_downstream
+sdx_downstream -[hidden]-> downstream_quarantine
+downstream_quarantine -[hidden]-> Seft.Responses
+Seft.Responses -[hidden]-> Seft.Responses.Quarantine
+Seft.Responses.Quarantine -[hidden]-> Seft.CollectionInstruments
+Seft.CollectionInstruments -[hidden]-> rrm_receipt
+rrm_receipt -[hidden]-> rrm_receipt_quarantine
+
+g -[hidden]-> c
+c -[hidden]-> st
+st -[hidden]-> ds
+ds -[hidden]-> scs
+scs  -[hidden]-> sps
+sps -[hidden]-> r
+
+g -> gateway_collect
+gateway_collect -> c
+c -> survey_quarantine
+c -> sdx_dap
+c -> d
+c -> v
+c -> st
+c -> sdx_downstream
+
+sdx_downstream -> ds
+ds -> downstream_quarantine
+ds -> seq
+ds -> t
+t -> seq
+seq -> st
+st -r-> pg
+ds -> ftp
+
+Seft.Responses -> scs
+scs -> Seft.Responses.Quarantine
+scs -> ftp
+ftp -> sps
+sps -> Seft.CollectionInstruments
+
+rrm_receipt -> r
+r --> rmg
+r -> rrm_receipt_quarantine
+
+@enduml

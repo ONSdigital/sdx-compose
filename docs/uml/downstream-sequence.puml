@@ -1,0 +1,71 @@
+@startuml
+
+skinparam EntityBackgroundColor DeepSkyBlue
+skinparam DatabaseBackgroundColor DeepSkyBlue
+skinparam CollectionsBackgroundColor LawnGreen
+
+entity sdx_downstream
+entity downstream_quarantine
+
+participant Downstream
+participant Store
+participant TransformCS
+participant Sequence
+
+database Postgres
+collections FTP
+
+activate Downstream #FFBBBB
+sdx_downstream --> Downstream: Consume tx_id
+
+Downstream -> Store: GET /responses/{tx_id}
+activate Store #FFBBBB
+Store --> Postgres
+Store -> Downstream : return response json
+deactivate Store
+
+break error
+    Downstream --> downstream_quarantine
+end
+
+
+Downstream -> Sequence: GET /sequence
+activate Sequence #FFBBBB
+Sequence --> Postgres
+Sequence -> Downstream : return number
+deactivate Sequence
+
+break error
+    Downstream --> downstream_quarantine
+end
+
+
+alt common-software
+    Downstream -> TransformCS: POST /common-software/{sequence_no}
+    activate TransformCS #FFBBBB
+else cora
+    Downstream -> TransformCS: POST /cora/{sequence_no}
+else cord
+    Downstream -> TransformCS: POST /cord/{sequence_no}
+end
+
+TransformCS -> Sequence: GET /image-sequence?n
+activate Sequence #FFBBBB
+Sequence --> Postgres
+Sequence -> TransformCS : return list
+deactivate Sequence
+
+TransformCS -> Downstream: Return Zip
+deactivate TransformCS
+
+break error
+    Downstream --> downstream_quarantine
+end
+
+Downstream -> Downstream: Unzip
+
+Downstream --> FTP: Send files
+
+deactivate Downstream
+
+@enduml
